@@ -1,4 +1,11 @@
 .btn {
-    background: black;
-    color: red;
+    display: inline-block;
+    zoom: 1;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    background: rgb(205, 164, 164);
+    color: #333333;
 }
