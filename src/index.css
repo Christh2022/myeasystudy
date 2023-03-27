@@ -1,5 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+* { 
+  -webkit-box-sizing:border-box; 
+  -moz-box-sizing:border-box; 
+  -ms-box-sizing:border-box; 
+  -o-box-sizing:border-box; 
+  box-sizing:border-box; 
+}
+
+html { 
+  width: 100%; 
+  height:100%; 
+  overflow:hidden;
+  font-family: 'Open Sans', sans-serif;
+	background: #092756;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

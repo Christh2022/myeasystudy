@@ -4,11 +4,11 @@ import './login.css'
 const Login = () => {
     return (
         <div class="login">
-            <h1>Login</h1>
+            <h1>Se connecter</h1>
             <form method="post">
-                <input type="text" name="u" placeholder="Username" required="required" />
-                <input type="password" name="p" placeholder="Password" required="required" />
-                <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+                <input type="text" name="u" placeholder="Email" required="required" />
+                <input type="password" name="p" placeholder="Mot de passe" required="required" />
+                <button type="submit" class="btn btn-primary btn-block btn-large">connexion</button>
             </form>
         </div>
     );
