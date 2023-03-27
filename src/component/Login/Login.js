@@ -6,6 +6,7 @@ import './login.css'
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
 
     const login = async (e)=>{
         e.preventDefault()
@@ -19,12 +20,17 @@ const Login = () => {
         }
     }
 
+
     return (
         <div className="login">
             <h1>Se connecter</h1>
             <form method="post" onSubmit={login}>
-                <input type="text" name="u" placeholder="Email" required="required" />
-                <input type="password" name="p" placeholder="Mot de passe" required="required" />
+                <input type="email" name="u" placeholder="Email" required="required" onChange={(e)=>setEmail(e.target.value)} />
+                <input type={showPassword? "text" : "password"} name="p" placeholder="Mot de passe" required="required" onChange={(e)=>setPassword(e.target.value)}/>
+                <div>
+                    <input type="checkbox" name='C' onClick={()=>setShowPassword(!showPassword)}/>
+                    <span className="rol">Voir le mot de passe</span>
+                </div>
                 <button type="submit" className="btn btn-primary btn-block btn-large">connexion</button>
             </form>
         </div>
