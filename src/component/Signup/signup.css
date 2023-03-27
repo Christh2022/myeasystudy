@@ -136,6 +136,22 @@ form a{
     text-decoration: none;
 }
 
+form .error{
+    width: 100%;
+    padding: 0.5rem; 
+    background: rgb(183, 49, 49);
+    color: #ffffff;
+    border-radius: 4px;
+    text-align: center;
+}
+.error.hide{
+    display: none;
+}
+
+.error.show{
+    display: block;
+}
+
 @media (max-width: 360px) {
     .signup{
         transform: scale(0.75);
