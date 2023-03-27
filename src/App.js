@@ -7,6 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>coucou</p>
+        <p>comment vas tu</p>
       </header>
     </div>
   );
