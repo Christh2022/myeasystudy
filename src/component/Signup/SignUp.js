@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { auth } from '../../firebase';
 import './signup.css'
 
@@ -15,6 +15,7 @@ const SignUp = () => {
     //const [image, setImage] = useState("")
     const [showError, setShowError] = useState(false)
     const [error, setError] = useState("")
+    const navigate = useNavigate()
 
     const signup= async (e)=>{
         e.preventDefault();
@@ -30,6 +31,7 @@ const SignUp = () => {
                         //photoURL: image
                     })
                     console.log(user);
+                    navigate('/payement')
                 } else {
                     setShowError(!showError)
                     setError("les mots de passes ne sont pas identique")
