@@ -14,6 +14,7 @@ const Login = () => {
         try {
             const credential = await signInWithEmailAndPassword(auth, email, password)
             alert("connexion reussie")
+            console.log(credential.user);
         } catch (error) {
             alert("connexion echoué")
             console.log(error);
@@ -27,7 +28,7 @@ const Login = () => {
             <form method="post" onSubmit={login}>
                 <input type="email" name="u" placeholder="Email" required="required" onChange={(e)=>setEmail(e.target.value)} />
                 <input type={showPassword? "text" : "password"} name="p" placeholder="Mot de passe" required="required" onChange={(e)=>setPassword(e.target.value)}/>
-                <div>
+                <div style={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
                     <input type="checkbox" name='C' onClick={()=>setShowPassword(!showPassword)}/>
                     <span className="rol">Voir le mot de passe</span>
                 </div>
