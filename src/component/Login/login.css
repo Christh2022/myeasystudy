@@ -5,6 +5,7 @@
 	margin: -150px 0 0 -150px;
 	width:300px;
 	height:300px;
+    transition: all 0.3s ease;
 }
 
 .login h1 { 
@@ -118,4 +119,11 @@ input{
 	-moz-transition: box-shadow .5s ease;
 	-o-transition: box-shadow .5s ease;
 	-ms-transition: box-shadow .5s ease;
+}
+
+@media (max-width: 360px) {
+    .login{
+        transform: scale(0.75);
+        transition: all 0.3s ease;
+    }
 }
