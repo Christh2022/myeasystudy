@@ -43,9 +43,9 @@ const SignUp = () => {
             <form method="post" onSubmit={signup}>
                 <input type="text" placeholder="Name" required="required" onChange={(e)=>setName(e.target.value)} />
                 <input type="email"  placeholder="Email" required="required" onChange={(e)=>setEmail(e.target.value)} />
-                <input type="phone"  placeholder="Phone" required="required" onChange={(e)=>setPhone(e.target.value)} />
+                <input type="phone"  placeholder="Téléphone" required="required" onChange={(e)=>setPhone(e.target.value)} />
                 <input type={showPassword? "text" : "password"} placeholder="Mot de passe" required="required" onChange={(e)=>setPassword(e.target.value)}/>
-                <input type={showPassword? "text" : "password"} placeholder="Mot de passe" required="required" onChange={(e)=>setConfirmPassword(e.target.value)}/>
+                <input type={showPassword? "text" : "password"} placeholder="conMot de passe" required="required" onChange={(e)=>setConfirmPassword(e.target.value)}/>
                 <div style={{display: 'flex', flexDirection: 'row', gap: '1rem', margin: '1rem 0'}}>
                     <input type="checkbox"  onClick={()=>setShowPassword(!showPassword)}/>
                     <span className="rol">Voir le mot de passe</span>

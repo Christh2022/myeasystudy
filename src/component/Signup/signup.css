@@ -121,13 +121,13 @@ input{
 	-ms-transition: box-shadow .5s ease;
 }
 
-form>:nth-child(5)>:nth-child(1){
+form>:nth-child(6)>:nth-child(1){
     width: 1rem;
     height: 1rem;
     box-shadow: none;
 }
 
-form>:nth-child(5)>:nth-child(2){
+form>:nth-child(6)>:nth-child(2){
     color: #ffffff;
 }
 

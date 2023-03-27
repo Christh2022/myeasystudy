@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, {useState} from 'react';
 import { auth } from '../../firebase';
+import {Link} from 'react-router-dom'
 import './login.css'
 
 const Login = () => {
@@ -33,6 +34,9 @@ const Login = () => {
                     <span className="rol">Voir le mot de passe</span>
                 </div>
                 <button type="submit" className="btn btn-primary btn-block btn-large">connexion</button>
+                <div style={{color: 'white',  margin: '1rem 0'}}>
+                    <span>Vous n'avez pas encore de compte ? <Link to='/signup'> inscrivez-vous</Link> </span>
+                </div>
             </form>
         </div>
     );
