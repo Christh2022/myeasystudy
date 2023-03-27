@@ -44,6 +44,14 @@ input:focus {
     margin-left: .3em;
 }
 
+.btn:hover, 
+.btn:active, 
+.btn.active, 
+.btn.disabled, 
+.btn[disabled] { 
+    background-color: #e6e6e6; 
+}
+
 .btn-primary:hover, 
 .btn-primary:active, 
 .btn-primary.active, 
@@ -52,6 +60,24 @@ input:focus {
     filter: none; 
     background-color: #4a77d4; 
 }
+
+.btn-primary, .btn-primary:hover { 
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); 
+    color: #ffffff; 
+}
+
+.btn-primary.active { 
+    color: rgba(255, 255, 255, 0.75); 
+}
+
+.btn-large { 
+    padding: 9px 14px; 
+    font-size: 15px; 
+    line-height: normal; 
+    -webkit-border-radius: 5px; 
+    -moz-border-radius: 5px; border-radius: 5px; 
+}
+
 .btn-block { 
     width: 100%; 
     display:block; 
