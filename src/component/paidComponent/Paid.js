@@ -26,7 +26,8 @@ function Paid() {
         product: JSON.stringify(product),
         amount: 15,
         secret_key: "a96d3a19-6e5c-46a6-9af2-fe99815b92a5"
-      })
+      }),
+      mode: 'no-cors' // option pour désactiver la sécurité CORS
     };
     fetch(url, requestOptions)
       .then(response => response.json())
