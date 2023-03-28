@@ -1,5 +1,6 @@
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { auth } from '../../firebase';
 
 const Paid = () => {
@@ -9,8 +10,9 @@ const Paid = () => {
     const [phone, setPhone] = useState("")
     const [name, setName] = useState("")
     const [amount, setAmount] = useState(0)
+    const navigate = useNavigate()
 
-
+    console.log(amount);
     const paid = async()=>{
         if (clickTest && !clickSilver && !clickGold) {
             setAmount(300);
@@ -21,32 +23,35 @@ const Paid = () => {
         }
         const product = {
             label: "Achat d'un Iphone S",
-            amount: amount,
+            amount: "10",
             details: "Iphone S, 32 GB, Gris...",
           };
           const customer = {
             uuid: UUID(),
-            name: name,
-            phone: phone
+            name: "fraise",
+            phone: "064021704"
           };
           const url = "https://ekolopay.com/api/v1/gateway/purchase-token?api_client=easystudy";
           
           try {
-            const response = await fetch(url, {
+            await fetch(url, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 customer: JSON.stringify(customer),
                 product: JSON.stringify(product),
-                amount: amount,
+                amount: 10,
                 secret_key: "a96d3a19-6e5c-46a6-9af2-fe99815b92a5"
               })
+            })
+            .then((response) => {
+                if (response.status === 200) {
+                    const responseData =  response.json();
+                    return responseData.response;
+                }
+                
+                console.log(response);
             });
-            
-            if (response.status === 200) {
-              const responseData = await response.json();
-              return responseData.response;
-            }
           } catch (error) {
             console.log(error);
           }
@@ -58,9 +63,16 @@ const Paid = () => {
             if (user) {
                 setPhone(user.phoneNumber);
                 setName(user.displayName)
+                console.log(user);
+            } else{
+                navigate('/')
+                setPhone("")
+                setName("")
             }
         })
     })
+
+    console.log(name, phone);
 
     const UUID = ()=>{
         var dt = new Date().getTime();
@@ -71,7 +83,6 @@ const Paid = () => {
         });
         return uuid;
     }
-    console.log(UUID());
 
 
     return (
@@ -80,6 +91,10 @@ const Paid = () => {
             <span onClick={()=>setClickSilver(true)}>200questions/mois</span>
             <span onClick={()=>setClickGold(true)}>illimité</span>
             <span onClick={paid}>payé</span>
+            <span onClick={()=>{
+                navigate('/')
+                signOut(auth)
+            }}>logout</span>
         </div>
     );
 };

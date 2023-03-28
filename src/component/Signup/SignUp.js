@@ -27,7 +27,7 @@ const SignUp = () => {
                     const user = credential.user
                     updateProfile(user, {
                         displayName: name,
-                        phoneNumber: phone,
+                        phoneNumber: phone
                         //photoURL: image
                     })
                     console.log(user);
@@ -52,6 +52,7 @@ const SignUp = () => {
             setShowError(!showError)
         }
     }
+    console.log(phone);
 
 
     return (
