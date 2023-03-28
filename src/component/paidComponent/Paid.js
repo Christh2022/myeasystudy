@@ -9,7 +9,7 @@ function Paid() {
     const [testAmount, setTestAmount] = useState(false);
     const [silverAmount, setSilverAmount] = useState(false);
     const [goldAmount, setGoldAmount] = useState(false);
-    //const [status, setStatus] = useState(0);
+    const [status, setStatus] = useState(0);
 
 
     useEffect(() => {
@@ -33,7 +33,7 @@ function Paid() {
             });
             const { data } = response.data;
             setPurchaseToken(data);
-            console.log(response.status);
+            setStatus(response.status);
         } catch (error) {
             console.error(error);
         }
