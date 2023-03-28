@@ -1,6 +1,9 @@
 //import { signOut } from 'firebase/auth';
 import axios from 'axios';
+import { onAuthStateChanged } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
+import { auth, database } from '../../firebase';
 //import { auth } from '../../firebase';
 
 function Paid() {
@@ -34,6 +37,17 @@ function Paid() {
             const { data } = response.data;
             setPurchaseToken(data);
             setStatus(response.status);
+
+            onAuthStateChanged(auth, (user)=>{
+              if(user){
+                addDoc(collection(database, "utilisateur"), {
+                  nom : user.displayName,
+                  email: user.email,
+                  Tel : user.phoneNumber,
+                  status : status
+                })
+              }
+            })
         } catch (error) {
             console.error(error);
         }
