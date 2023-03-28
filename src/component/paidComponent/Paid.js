@@ -1,4 +1,6 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
+import { auth } from '../../firebase';
 
 function Paid() {
   const [response, setResponse] = useState('');
@@ -40,6 +42,7 @@ function Paid() {
     <div>
       <button onClick={makePurchaseRequest}>Effectuer l'achat</button>
       {response && <p>Réponse de la requête: {response}</p>}
+      <span onClick={()=>signOut(auth)}>logout</span>
     </div>
   );
 }
