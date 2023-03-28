@@ -12,8 +12,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/login' element={<Login/>}/>
-        <Route path={`/signup/${token}`} element={<SignUp />}/>
-        <Route path='/' element={<Paid setToken={setToken}/>}/>
+        <Route path='/signup' element={<SignUp />}/>
+        <Route path='/*' element={<Login />}/>
+        <Route path='/' element={<Paid/>}/>
       </Routes>
     </BrowserRouter>
   );
