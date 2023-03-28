@@ -12,7 +12,6 @@ function Paid({setToken}) {
             const response = await axios.post('http://localhost:5000/create-payment');
             const { data } = response.data;
             setPurchaseToken(data);
-            setToken(data)
             console.log(response.status);
         } catch (error) {
             console.error(error);
@@ -20,6 +19,7 @@ function Paid({setToken}) {
     }
 
     const redirectToPayment = () => {
+        setToken(purchaseToken)
         window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
     }
 
