@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 function Paid({setToken}) {
     const [purchaseToken, setPurchaseToken] = useState(null);
-    const [status, setStatus] = useState(0);
+    //const [status, setStatus] = useState(0);
 
     const createPayment = async () => {
         try {
