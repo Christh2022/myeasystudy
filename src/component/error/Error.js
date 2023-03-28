@@ -7,7 +7,7 @@ const Error = () => {
         navigate('/login')
     }
     return (
-        <div onClick={handleGoBack}>
+        <div onClick={handleGoBack} style={{color: 'white', padding: '5rem', cursor: 'pointer'}}>
             connecte-toi
         </div>
     );
