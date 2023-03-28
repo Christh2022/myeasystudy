@@ -29,13 +29,14 @@ function Paid() {
       }),
       mode: 'no-cors' // option pour désactiver la sécurité CORS
     };
+
     fetch(url, requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        if(data.response) {
-          setResponse(data.response);
-        }
-      })
+    .then(response => response.json())
+    .then(data => {
+      if(data.response) {
+        setResponse(data.response);
+      }
+    })
       .catch((error )=> {
         console.log(error)
         });
