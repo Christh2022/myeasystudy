@@ -29,7 +29,7 @@ const Paid = () => {
             name: name,
             phone: phone
           };
-          const url = "https://ekolopay.com/api/v1/gateway/purchase-token?api_client=demo";
+          const url = "https://ekolopay.com/api/v1/gateway/purchase-token?api_client=easystudy";
           
           try {
             const response = await fetch(url, {
@@ -39,7 +39,7 @@ const Paid = () => {
                 customer: JSON.stringify(customer),
                 product: JSON.stringify(product),
                 amount: amount,
-                secret_key: "054e9a59-ab57-4e9a-940d-97e6b940d875"
+                secret_key: "a96d3a19-6e5c-46a6-9af2-fe99815b92a5"
               })
             });
             
