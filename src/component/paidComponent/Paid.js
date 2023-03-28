@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 //import { auth } from '../../firebase';
 
-function Paid({setToken}) {
+function Paid() {
     const [purchaseToken, setPurchaseToken] = useState(null);
     const [amount, setAmount] = useState(15);
     const [testAmount, setTestAmount] = useState(false);
@@ -40,7 +40,6 @@ function Paid({setToken}) {
     }
 
     const redirectToPayment = () => {
-        setToken(purchaseToken)
         window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
     }
 
