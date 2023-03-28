@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { database } from '../../firebase';
+import { auth, database } from '../../firebase';
 
 const Chat = () => {
     const [status, setStatus] = useState(0)
@@ -28,7 +28,7 @@ const Chat = () => {
 
     return (
         <div>
-            
+            {status}
         </div>
     );
 };
