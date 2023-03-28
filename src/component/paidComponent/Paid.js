@@ -36,7 +36,9 @@ function Paid() {
           setResponse(data.response);
         }
       })
-      .catch(error => console.error(error));
+      .catch((error )=> {
+        console.log(error)
+        });
   }
 
   return (
