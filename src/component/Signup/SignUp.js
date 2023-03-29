@@ -1,8 +1,9 @@
 
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { doc, setDoc} from 'firebase/firestore';
 import React, { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
-import { auth } from '../../firebase';
+import { auth, database } from '../../firebase';
 import './signup.css'
 
 const SignUp = () => {
@@ -27,9 +28,13 @@ const SignUp = () => {
                     const user = credential.user
                     updateProfile(user, {
                         displayName: name,
-                        phoneNumber: phone
                         //photoURL: image
                     })
+                    setDoc(doc(database, "utilisateur", user.uid), {
+                        nom : name,
+                        email: user.email,
+                        tel : phone
+                      })
                     console.log(user);
                     navigate('/')
                 } else {
@@ -52,7 +57,7 @@ const SignUp = () => {
             setShowError(!showError)
         }
     }
-    //console.log(phone);
+    console.log(name, email, phone);
 
 
     return (

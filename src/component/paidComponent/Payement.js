@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 
-const Payement = ({handle, amount, payment}) => {
+const Payement = ({handle, amount, payment, title, setPopup, popup}) => {
     const [confirm, setconfirm] = useState(false)
 
     return (
         <div className="plan">
             <header>
                 <h4 className="plan-title">
-                  Starter
+                  {title}
                 </h4>
-                <div className="plan-cost"><span className="plan-price">{amount}FCFA</span><span className="plan-type">/mois</span></div>
+                <div className="plan-cost">
+                    <span className="plan-price">{amount}FCFA</span>
+                    <span className="plan-type">/mois</span>
+                </div>
             </header>
             <ul className="plan-features">
                 <li><i className="ion-checkmark"> </i>5GB Linux Web Space</li>
@@ -26,7 +29,11 @@ const Payement = ({handle, amount, payment}) => {
                     payment()
                 }}>payer</span>
                 :
-                <span onClick={payment}>confirmer le payement</span>}
+                <span onClick={()=>{
+                    setconfirm(!confirm)
+                    setPopup(!popup)
+                    payment()
+                }}>valider</span>}
             </div>
         </div>
 
