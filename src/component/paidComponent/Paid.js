@@ -1,10 +1,11 @@
-//import { signOut } from 'firebase/auth';
 import axios from 'axios';
 import { onAuthStateChanged } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { auth, database } from '../../firebase';
-//import { auth } from '../../firebase';
+import './paid.css';
+import Payement from './Payement';
+
 
 function Paid() {
     const [purchaseToken, setPurchaseToken] = useState(null);
@@ -14,87 +15,124 @@ function Paid() {
     const [goldAmount, setGoldAmount] = useState(false);
     const [status, setStatus] = useState(0);
 
-
-    useEffect(() => {
-      const handleAmount = ()=>{
-        if(testAmount && !silverAmount && !goldAmount){
-          setAmount(100)
-        } else if(!testAmount && silverAmount && !goldAmount){
-          setAmount(300)
-        } else if(!testAmount && !silverAmount && goldAmount){
-          setAmount(600)
+  /**
+   *  const createPayment = async () => {
+    try {
+      if(amount !== 0 ){
+        if (amount === 100 || amount === 300 || amount === 600) {
+          const response = await axios.post("http://localhost:5000/create-payment", {
+            amount: amount,
+          });
+          const { data } = response.data;
+          setPurchaseToken(data);
+          setStatus(response.status)
+          onAuthStateChanged(auth, (user)=>{
+            if(user){
+              addDoc(collection(database, "utilisateur"), {
+                nom : user.displayName,
+                email: user.email,
+                Tel : user.phoneNumber,
+                status : status
+              })
+            }
+          })
         }
-        
       }
-      handleAmount()
+    } catch (error) {
+        console.error(error);
+    }
+  }
+   */
+
+
+
+
+  const payment = async()=>{
+    if(amount !== 0){
+      const response = await axios.post("http://localhost:5000/create-payment", {
+        amount: amount,
+      });
+      const { data } = response.data;
+      setPurchaseToken(data);
+      setStatus(response.status)
       
-    });
-    const createPayment = async () => {
-        try {
-            const response = await axios.post("http://localhost:5000/create-payment", {
-                amount: amount,
-            });
-            const { data } = response.data;
-            setPurchaseToken(data);
-            setStatus(response.status);
+    }
+    onAuthStateChanged(auth, (user)=>{
+      if(user){
+        addDoc(collection(database, "utilisateur"), {
+          nom : user.displayName,
+          email: user.email,
+          Tel : user.phoneNumber,
+          status : status
+        })
+      } else {
+        console.log('aucun utilisateur');
+      }
+    })
+  }
 
-            onAuthStateChanged(auth, (user)=>{
-              if(user){
-                addDoc(collection(database, "utilisateur"), {
-                  nom : user.displayName,
-                  email: user.email,
-                  Tel : user.phoneNumber,
-                  status : status
-                })
-              }
-            })
-        } catch (error) {
-            console.error(error);
-        }
+  console.log(purchaseToken, amount, status);
+
+  const handlePayement = ()=>{
+    if(status === 200){
+      window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
+    } else {
+      console.log("une erreur c'est produite");
+    }
+  }
+
+  const handleTest = ()=>{
+    setTestAmount(true)
+    setSilverAmount(false)
+    setGoldAmount(false)
+  }
+
+  const handleSilver = ()=>{
+    setTestAmount(false)
+    setSilverAmount(true)
+    setGoldAmount(false)
+  }
+
+  const handleGolden = ()=>{
+    setTestAmount(false)
+    setSilverAmount(false)
+    setGoldAmount(true)
+  }
+
+  useEffect(()=>{
+    const handleAmount = ()=>{
+      if(testAmount === true && silverAmount === false && goldAmount === false){
+        setAmount(100)
+      } else if(testAmount === false && silverAmount === true && goldAmount === false){
+        setAmount(300)
+      } else if(testAmount === false && silverAmount === false && goldAmount === true){
+        setAmount(100)
+      } else {
+        setAmount(0)
+      }
     }
 
-    const redirectToPayment = () => {
-        window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
-    }
+    handleAmount()
+  })
 
-    const handleTest = ()=>{
-      setTestAmount(true)
-      setSilverAmount(false)
-      setGoldAmount(false)
-    }
+  return (
+      <div>
 
-    const handleSilver = ()=>{
-      setTestAmount(false)
-      setSilverAmount(true)
-      setGoldAmount(false)
-    }
-
-    const handleGolden = ()=>{
-      setTestAmount(false)
-      setSilverAmount(false)
-      setGoldAmount(true)
-    }
+          
+          <button onClick={payment}>pay</button>
+          <p style={{color: 'white'}} onClick={handlePayement}>confirmer le payement</p>
+          <p style={{color: 'white'}}>{amount}</p>
+          
 
 
-    return (
-        <div>
-            <button onClick={handleTest}>
-              <span onClick={createPayment}>100</span>
-            </button>
-            <button onClick={handleSilver}>
-              <span onClick={createPayment}>300</span>
-            </button>
-            <button onClick={handleGolden}>
-              <span onClick={createPayment}>600</span>
-            </button>
-
-            <p style={{color: 'white'}}>{purchaseToken }</p>
-            <p style={{color: 'white'}}>{amount}</p>
-            {purchaseToken && <button onClick={redirectToPayment}>Payer</button>}
-            
-
+        <div className="snip1404">
+          <Payement payment={payment} handlePayement={handlePayement} handle={handleTest} amount="250"/>
+          <Payement payment={payment} handlePayement={handlePayement} handle={handleSilver} amount = "550"/>
+          <Payement payment={payment} handlePayement={handlePayement} handle={handleGolden} amount = "1.000"/>
+          <Payement payment={payment} handlePayement={handlePayement} amount="1.500"/>
         </div>
-    );
+      </div>
+  );
 }
 
 

@@ -1,10 +1,12 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { auth, database } from '../../firebase';
 
 const Chat = () => {
     const [status, setStatus] = useState(0)
+    const navigate = useNavigate()
     useEffect(()=>{
         onAuthStateChanged(auth, (user)=>{
             if(user){
@@ -22,13 +24,16 @@ const Chat = () => {
                     console.log(error);
                     console.log("erreur lors de la récupération du status");
                 })
+            } else {
+                navigate('/login')
             }
         })
     })
 
     return (
-        <div>
+        <div >
             {status}
+            azertyuiop
         </div>
     );
 };
