@@ -181,7 +181,8 @@
 }
 @media only screen and (max-width: 654px) {
     .payment-wrapper{
-        padding: 0rem 0rem 1rem 0rem;
+        padding: 0rem;
+        width: 100%;
     }
 
     .snip1404 .plan {
