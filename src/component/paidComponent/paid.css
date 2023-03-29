@@ -183,7 +183,8 @@
     .payment-wrapper{
         padding: 0rem 0rem 1rem 0rem;
     }
+
     .snip1404 .plan {
-        width: calc(70% - 20px );
+        width: calc(80% - 20px );
     }
 }
