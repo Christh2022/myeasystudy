@@ -12,6 +12,7 @@ const Chat = ({purchaseToken}) => {
         onAuthStateChanged(auth, (user)=>{
             if(user){
                 const userId = user.uid;
+                console.log(userId);
                 const usersRef = doc(database, "utilisateur", userId);
                 getDoc(usersRef).then((doc)=>{
                     if (doc.exists()) {
@@ -21,6 +22,7 @@ const Chat = ({purchaseToken}) => {
                         console.log("l'utilisateur connecté n'existe pas ");
                         console.log(doc.exists());
                     }
+                    console.log(status);
                 }).catch((error)=>{
                     console.log(error);
                     console.log("erreur lors de la récupération du status");
