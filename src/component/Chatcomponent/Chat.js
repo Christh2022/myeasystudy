@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -45,7 +45,7 @@ const Chat = () => {
         }, []);
 
     return (
-        <div >
+        <div onClick={()=>signOut(auth)}>
             {status}
             {maVariable}
             azertyuiop
