@@ -73,8 +73,6 @@ function Paid({purchaseToken, setPurchaseToken}) {
     }
   }
 
-  console.log(purchaseToken, amount, status);
-
   const handlePayement = ()=>{
     if(status === 200){
       signOut(auth)
@@ -143,6 +141,12 @@ function Paid({purchaseToken, setPurchaseToken}) {
             if (doc.exists()) {
                 const userTel = doc.data().tel;
                 setPhone(userTel)
+                const userStatus = doc.data().status;
+                if(userStatus === 0){
+                  updateDoc(usersRef, {
+                    status: purchaseToken
+                  })
+                }
             } else {
                 console.log("l'utilisateur connecté n'existe pas ");
                 console.log(doc.exists());
@@ -151,9 +155,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
             console.log(error);
             console.log("erreur lors de la récupération du status");
         })
-        updateDoc(usersRef, {
-          status: purchaseToken
-        })
+        
       } else {
         navigate('/login')
       }

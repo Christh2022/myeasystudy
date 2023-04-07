@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, database } from '../../firebase';
 import axios from 'axios';
 
-const Chat = ({purchaseToken}) => {
+const Chat = ({purchaseToken, setPurchaseToken}) => {
     const [status, setStatus] = useState(0)
     const navigate = useNavigate()
     useEffect(()=>{
@@ -18,6 +18,7 @@ const Chat = ({purchaseToken}) => {
                     if (doc.exists()) {
                         const userStatus = doc.data().status;
                         setStatus(userStatus)
+                        console.log(doc.data());
                     } else {
                         console.log("l'utilisateur connecté n'existe pas ");
                         console.log(doc.exists());
@@ -33,18 +34,21 @@ const Chat = ({purchaseToken}) => {
         })
     })
 
-        const [maVariable, setMaVariable] = useState('');
-
-        useEffect(() => {
-          axios.post('http://localhost:5000/callback')
-            .then(response => {
-              setMaVariable(purchaseToken);
-              console.log(response);
-            })
-            .catch(error => {
-              console.log(error);
-            });
-        }, [purchaseToken]);
+    const [maVariable, setMaVariable] = useState('');
+    useEffect(() => {
+     if(status !== 0){
+        axios.post('http://localhost:5000/check-payment', {
+            purchaseToken: status
+          })
+        .then(response => {
+          setMaVariable(purchaseToken);
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+     }
+    }, [status, purchaseToken]);
 
     return (
         <div onClick={()=>signOut(auth)}>
