@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, database } from '../../firebase';
@@ -150,6 +150,9 @@ function Paid({purchaseToken, setPurchaseToken}) {
         }).catch((error)=>{
             console.log(error);
             console.log("erreur lors de la récupération du status");
+        })
+        updateDoc(usersRef, {
+          status: purchaseToken
         })
       } else {
         navigate('/login')
