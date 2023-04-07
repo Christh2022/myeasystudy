@@ -3,6 +3,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, database } from '../../firebase';
+import axios from 'axios';
 
 const Chat = () => {
     const [status, setStatus] = useState(0)
@@ -30,9 +31,23 @@ const Chat = () => {
         })
     })
 
+        const [maVariable, setMaVariable] = useState('');
+
+        useEffect(() => {
+          axios.get('http://localhost:5000/callback')
+            .then(response => {
+              setMaVariable(response.data.purchaseToken);
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }, []);
+
     return (
         <div >
             {status}
+            {maVariable}
             azertyuiop
         </div>
     );

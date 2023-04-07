@@ -1,13 +1,14 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, {useState} from 'react';
 import { auth } from '../../firebase';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import './login.css'
 
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    const navigate = useNavigate();
 
     const login = async (e)=>{
         e.preventDefault()
@@ -16,6 +17,7 @@ const Login = () => {
             const credential = await signInWithEmailAndPassword(auth, email, password)
             alert("connexion reussie")
             console.log(credential.user);
+            navigate('/chat')
         } catch (error) {
             alert("connexion echoué")
             console.log(error);
