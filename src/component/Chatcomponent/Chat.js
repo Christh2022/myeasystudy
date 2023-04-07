@@ -42,7 +42,7 @@ const Chat = ({purchaseToken}) => {
             .catch(error => {
               console.log(error);
             });
-        }, []);
+        }, [purchaseToken]);
 
     return (
         <div onClick={()=>signOut(auth)}>

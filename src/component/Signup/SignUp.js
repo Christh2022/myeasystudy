@@ -33,8 +33,8 @@ const SignUp = () => {
                     setDoc(doc(database, "utilisateur", user.uid), {
                         nom : name,
                         email: user.email,
+                        status: 0,
                         tel : phone,
-                        status: 0
                       })
                     console.log(user);
                     navigate('/')
