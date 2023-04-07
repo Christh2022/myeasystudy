@@ -9,8 +9,7 @@ import Payement from './Payement';
 import Popup from './Popup';
 
 
-function Paid() {
-    const [purchaseToken, setPurchaseToken] = useState(null);
+function Paid({purchaseToken, setPurchaseToken}) {
     const [amount, setAmount] = useState(15);
     const [testAmount, setTestAmount] = useState(false);
     const [silverAmount, setSilverAmount] = useState(false);

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth, database } from '../../firebase';
 import axios from 'axios';
 
-const Chat = () => {
+const Chat = ({purchaseToken}) => {
     const [status, setStatus] = useState(0)
     const navigate = useNavigate()
     useEffect(()=>{
@@ -36,7 +36,7 @@ const Chat = () => {
         useEffect(() => {
           axios.post('http://localhost:5000/callback')
             .then(response => {
-              setMaVariable(response.data.purchaseToken);
+              setMaVariable(purchaseToken);
               console.log(response);
             })
             .catch(error => {
