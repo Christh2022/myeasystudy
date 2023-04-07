@@ -34,7 +34,7 @@ const Chat = () => {
         const [maVariable, setMaVariable] = useState('');
 
         useEffect(() => {
-          axios.get('http://localhost:5000/callback')
+          axios.post('http://localhost:5000/callback')
             .then(response => {
               setMaVariable(response.data.purchaseToken);
               console.log(response);
