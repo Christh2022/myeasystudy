@@ -1,8 +1,9 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { auth } from '../../firebase';
 import {Link, useNavigate} from 'react-router-dom'
 import './login.css'
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -23,6 +24,22 @@ const Login = () => {
             console.log(error);
         }
     }
+    const [status, setStatus] = useState()
+    useEffect(() => {
+        if(status !== 0){
+           console.log(status);
+           axios.post('http://localhost:5000/callback', 
+           )
+           .then(response => {
+           //setMaVariable(purchaseToken);
+                setStatus(response)
+                console.log(response);
+           })
+           .catch(error => {
+             console.log(error);
+           });
+        }
+       }, [status]);
 
 
     return (
