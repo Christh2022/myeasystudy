@@ -52,6 +52,7 @@ const SignUp = () => {
             console.log(error);
             setShowError(!showError)
             setError("une erreur s'est produite lors de l'inscription")
+            setStatus(0)
         }
     }
 
