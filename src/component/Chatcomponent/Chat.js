@@ -38,7 +38,7 @@ const Chat = ({purchaseToken, setPurchaseToken}) => {
     useEffect(() => {
      if(status !== 0){
         console.log(status);
-        axios.post('http://localhost:5000/callback-ekolopay')
+        axios.post('http://localhost:5000/callback')
         .then(response => {
           setMaVariable(purchaseToken);
           console.log(response);
