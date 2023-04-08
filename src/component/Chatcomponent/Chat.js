@@ -34,13 +34,13 @@ const Chat = ({purchaseToken, setPurchaseToken}) => {
         })
     })
 
-    const [maVariable, setMaVariable] = useState('');
     useEffect(() => {
      if(status !== 0){
         console.log(status);
-        axios.post('http://localhost:5000/callback')
+        axios.post('http://localhost:5000/callback', 
+        )
         .then(response => {
-          setMaVariable(purchaseToken);
+        //setMaVariable(purchaseToken);
           console.log(response);
         })
         .catch(error => {
@@ -52,9 +52,8 @@ const Chat = ({purchaseToken, setPurchaseToken}) => {
     
 
     return (
-        <div onClick={()=>signOut(auth)}>
+        <div onClick={()=>signOut(auth)} style={{color: 'white'}}>
             {status}
-            {maVariable}
             azertyuiop
         </div>
     );
