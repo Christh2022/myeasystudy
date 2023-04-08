@@ -143,7 +143,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
                 const userTel = doc.data().tel;
                 setPhone(userTel)
                 const userStatus = doc.data().status;
-                if(userStatus === null){
+                if(userStatus === 0){
                   updateDoc(usersRef, {
                     status: purchaseToken
                   })
