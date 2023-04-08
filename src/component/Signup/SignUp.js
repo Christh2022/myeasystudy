@@ -15,7 +15,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showError, setShowError] = useState(false)
     const [error, setError] = useState("")
-    const [status, setStatus] = useState(0)
+    const [status, setStatus] = useState(1)
     const navigate = useNavigate()
 
 
@@ -38,7 +38,7 @@ const SignUp = () => {
                         tel : phone,
                         Payement: false,
                       })
-                    console.log(user);
+                    console.log(name, user.email, status, phone);
                     navigate('/')
                 } else {
                     setShowError(!showError)

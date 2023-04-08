@@ -24,6 +24,9 @@ const Chat = () => {
                                 Payement: true,
                             })
                         }
+                        if(userStatus === 0 && userStatus === null){
+                            signOut(auth)
+                        }
                     } else {
                         console.log("l'utilisateur connecté n'existe pas ");
                         console.log(doc.exists());
