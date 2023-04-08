@@ -33,7 +33,7 @@ const SignUp = () => {
                     setDoc(doc(database, "utilisateur", user.uid), {
                         nom : name,
                         email: user.email,
-                        status: Number(0),
+                        status: 0,
                         tel : phone,
                         Payement: false,
                       })
