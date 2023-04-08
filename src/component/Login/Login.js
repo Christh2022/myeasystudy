@@ -28,7 +28,7 @@ const Login = () => {
     useEffect(() => {
         if(status !== 0){
            console.log(status);
-           axios.post('http://localhost:5000/callback', 
+           axios.post('http://localhost:5000/check-payment', 
            )
            .then(response => {
            //setMaVariable(purchaseToken);
