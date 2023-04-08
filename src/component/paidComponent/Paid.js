@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged} from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -75,7 +75,6 @@ function Paid({purchaseToken, setPurchaseToken}) {
 
   const handlePayement = ()=>{
     if(status === 200){
-      signOut(auth)
       window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
     } else {
       console.log("une erreur c'est produite");

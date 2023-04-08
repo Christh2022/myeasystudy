@@ -37,9 +37,8 @@ const Chat = ({purchaseToken, setPurchaseToken}) => {
     const [maVariable, setMaVariable] = useState('');
     useEffect(() => {
      if(status !== 0){
-        axios.post('http://localhost:5000/check-payment', {
-            purchaseToken: status
-          })
+        console.log(status);
+        axios.post('http://localhost:5000/callback-ekolopay')
         .then(response => {
           setMaVariable(purchaseToken);
           console.log(response);
@@ -49,6 +48,8 @@ const Chat = ({purchaseToken, setPurchaseToken}) => {
         });
      }
     }, [status, purchaseToken]);
+
+    
 
     return (
         <div onClick={()=>signOut(auth)}>
