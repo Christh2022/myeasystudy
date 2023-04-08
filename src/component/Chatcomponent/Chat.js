@@ -24,7 +24,7 @@ const Chat = () => {
                                 Payement: true,
                             })
                         }
-                        if(userStatus === 0 && userStatus === null){
+                        if(userStatus === 0 || userStatus === null){
                             signOut(auth)
                         }
                     } else {
