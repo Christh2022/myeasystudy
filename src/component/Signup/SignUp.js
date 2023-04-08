@@ -15,6 +15,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showError, setShowError] = useState(false)
     const [error, setError] = useState("")
+    const [status, setStatus] = useState(0)
     const navigate = useNavigate()
 
 
@@ -33,7 +34,7 @@ const SignUp = () => {
                     setDoc(doc(database, "utilisateur", user.uid), {
                         nom : name,
                         email: user.email,
-                        status: 0,
+                        status: status,
                         tel : phone,
                         Payement: false,
                       })
