@@ -7,7 +7,7 @@ const Error = () => {
     const handleGoBack = ()=>{
         navigate('/login')
     }
-    const [status, setStatus] = useState()
+    const [status, setStatus] = useState(1)
 
     useEffect(() => {
         if(status !== 0){
