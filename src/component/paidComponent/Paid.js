@@ -65,13 +65,15 @@ function Paid({purchaseToken, setPurchaseToken}) {
         });
         const { data } = response.data;
         setPurchaseToken(data);
-        setStatus(data)
+        console.log(purchaseToken);
+        setStatus(response.status)
         
       }
     } catch (error) {
       console.log(error);
     }
   }
+  console.log(purchaseToken);
 
   const handlePayement = ()=>{
     if(status === 200){
