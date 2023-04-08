@@ -35,6 +35,7 @@ const SignUp = () => {
                         email: user.email,
                         status: 0,
                         tel : phone,
+                        Payement: false,
                       })
                     console.log(user);
                     navigate('/')

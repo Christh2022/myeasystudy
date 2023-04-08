@@ -15,8 +15,8 @@ function App() {
         <Route path='/chat' element={<Chat purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
         <Route path='/login' element={<Login purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
         <Route path='/signup' element={<SignUp />}/>
-        <Route path='/*' element={<Login purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
-        <Route path='/' element={<Paid purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
+        <Route path='/*' element={<Chat purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
+        <Route path='/' element={<Paid purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken} />}/>
       </Routes>
     </BrowserRouter>
   );
