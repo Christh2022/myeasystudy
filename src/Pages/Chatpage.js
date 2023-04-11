@@ -4,7 +4,7 @@ import Chat from '../component/Chatcomponent/Chat';
 import SideBar from '../component/sidebarComponent/SideBar';
 import Header from '../component/Header/Header';
 
-const Chatpage = ({name, email, phone,  userImage}) => {
+const Chatpage = ({name, email, userImage}) => {
     
     const [showMenu, setShowMenu] = useState(false);
     return (

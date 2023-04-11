@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './popup.css'
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, updateDoc } from 'firebase/firestore';
+import { auth, database } from '../../firebase';
 
 const Popup = ({name, phone, amount, title, setPopup, handlePayement}) => {
+    
+    useEffect(()=>{
+        onAuthStateChanged(auth, (user)=>{
+            if(user){
+                const userId = user.uid
+                const usersRef = doc(database, "utilisateur", userId)
+                updateDoc(usersRef, {
+                    formule: title,
+                    prix: `${amount} FCFA`,
+                    
+                })
+            }
+        })
+    })
+
     return (
         <div className='payement-popup'>
             <h3>Nom : {name}</h3>

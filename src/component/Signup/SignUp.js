@@ -54,6 +54,9 @@ const SignUp = () => {
                         status: status,
                         tel : phone,
                         Payement: false,
+                        formule: undefined,
+                        prix: "0 FCFA",
+                        question: 0
                     })
                     sendEmailVerification(user)
 

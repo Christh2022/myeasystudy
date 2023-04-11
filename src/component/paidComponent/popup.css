@@ -69,6 +69,12 @@
 
 @media (max-width: 600px) {
     .payement-popup{
-        transform: scale(0.65);
+        transform: scale(0.65) translateX(-78%);
+    }
+}
+
+@media (max-width: 360px) {
+    .payement-popup{
+        transform: scale(0.55) translateX(-92%);
     }
 }

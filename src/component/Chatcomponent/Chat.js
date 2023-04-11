@@ -1,19 +1,24 @@
-import {  onAuthStateChanged  } from 'firebase/auth';
+import {  onAuthStateChanged, signOut  } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, {  useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, database } from '../../firebase';
 import './chatcomponent.css'
 import {IoIosSend} from 'react-icons/io'
+import {RxCross2} from 'react-icons/rx'
 import logo from '../../assets/EASY.png'
 const Chat = ({ userImage}) => {
     
-    const [status, setStatus] = useState(0)
-    const [payment, setPayment] = useState(false)
+    const [status, setStatus] = useState(0);
+    const [payment, setPayment] = useState(false);
     const chatLog = useRef();
-    const [message, setMessage] = useState("")
-    const [tab, setTab] = useState([])
-    const navigate = useNavigate()
+    const [message, setMessage] = useState("");
+    const [tab, setTab] = useState([]);
+    const [questionNumber, setQuestionNumber] = useState(0);
+    const [upgrade, setUpgrade] = useState(false);
+    const navigate = useNavigate();
+    const [formule, setFormule] = useState(undefined)
+    const [limit, setLimit] = useState(0)
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user)=>{
@@ -23,7 +28,11 @@ const Chat = ({ userImage}) => {
                 getDoc(usersRef).then((doc)=>{
                     if (doc.exists()) {
                         const userStatus = doc.data().status;
-                        const userPayment = doc.data().Payement
+                        const userPayment = doc.data().Payement;
+                        const question = doc.data().question;
+                        const formule = doc.data().formule
+                        setFormule(formule)
+                        setQuestionNumber(question)
                         setStatus(userStatus)
                         setPayment(userPayment)
                         if (payment === false) {
@@ -31,11 +40,12 @@ const Chat = ({ userImage}) => {
                                 Payement: true,
                             })
                         }
-                        // if(userStatus === 0){
-                        //     signOut(auth)
-                        // }
+                        if(status === 1 ){
+                            signOut(auth)
+                            navigate('/')
+                        }
                     } else {
-                        console.log("l'utilisateur connecté n'existe pas ");
+                        console.log("l'utilisateur connecté n'existe pas");
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -46,30 +56,49 @@ const Chat = ({ userImage}) => {
             }
         })
     })
-    console.log(status, navigate, setStatus, payment, setPayment);
     
     const handleChat = async (e) => {
         e.preventDefault();
-        const newList = [...tab]; //Copie du tableau tab
-        newList.push(message);
-        try {
-          const res = await fetch('http://localhost:5080', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              message: message,
-            }),
-          });
-          const data = await res.json();
-          newList.push(data.completion.content);
-        } catch (error) {
-          newList.push('une erreur c\'est produite');
+        if(questionNumber < limit){
+            const newList = [...tab]; //Copie du tableau tab
+            newList.push(message);
+            try {
+                onAuthStateChanged(auth, (user)=>{
+                    if(user){
+                        const userId = user.uid;
+                        const usersRef = doc(database, "utilisateur", userId);
+                        updateDoc(usersRef, {
+                            question: questionNumber + 1
+                        })
+                    }
+                })
+
+                const res = await fetch('http://localhost:5080', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                    }),
+                });
+                const data = await res.json();
+                newList.push(data.completion.content);
+            } catch (error) {
+            newList.push('une erreur c\'est produite');
+            }
+            setTab(newList);
+            setMessage('');
+        }else{
+            setUpgrade(true)
+            setMessage('');
         }
-        setTab(newList);
-        setMessage('');
     };
+
+    const handlePaid = ()=>{
+        navigate('/');
+        setUpgrade(false);
+    }
    
     useEffect(() => {
         if (chatLog.current) {
@@ -78,7 +107,20 @@ const Chat = ({ userImage}) => {
         }
     }, [tab]);
 
+    useEffect(()=>{
+        if(formule === 'Starter'){
+            setLimit(150)
+        } else if(formule === 'Basic'){
+            setLimit(300)
+        } else if(formule === 'VIP'){
+            setLimit(750)
+        }  else if(formule === 'Prenium'){
+            setLimit(1000)
+        }
+    }, [formule])
+
     return (
+        <>
         <div className='chatcomponent' style={{color: 'white'}}>
             <div ref={chatLog} className="chat_log">
                 <ul>
@@ -101,6 +143,16 @@ const Chat = ({ userImage}) => {
                 </div>
             </form>
         </div>
+        {upgrade && 
+            <div className="chatcomponent_popup">
+                <span>Veuillez acheter une formule pour pouvoir continuer</span>
+                <span onClick={handlePaid}>Cliquez sur ce bouton</span>
+                <span onClick={()=>setUpgrade(false)} style={{position: 'absolute', right: '1rem', top: '0.6rem', fontSize: '1rem'}}>
+                    <RxCross2/>
+                </span>
+            </div>
+        }
+        </>
     );
 };
 

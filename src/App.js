@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import Error from './component/error/Error';
 import Login from './component/Login/Login';
 import Paid from './component/paidComponent/Paid';
 import SignUp from './component/Signup/SignUp';
@@ -8,7 +7,6 @@ import Chatpage from './Pages/Chatpage';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import logo from './assets/user-g8bc25d40d_1280.png'
-
 
 function App() {
   const [purchaseToken, setPurchaseToken] = useState(null);
