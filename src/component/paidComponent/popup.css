@@ -66,3 +66,9 @@
 .payement-popup>:nth-child(3)>*:hover{
     background-color: #552a3f;
 }
+
+@media (max-width: 600px) {
+    .payement-popup{
+        transform: scale(0.65);
+    }
+}

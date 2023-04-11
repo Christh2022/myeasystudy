@@ -129,7 +129,6 @@ function Paid({purchaseToken, setPurchaseToken}) {
         setAmount(0)
       }
     }
-
     handleAmount();
 
     onAuthStateChanged(auth, (user)=>{
@@ -165,15 +164,8 @@ function Paid({purchaseToken, setPurchaseToken}) {
   })
 
   return (
+    <div className='authentification'>
       <div className='payment-wrapper'>
-
-          
-          {/*<button onClick={payment}>pay</button>
-          <p style={{color: 'white'}} onClick={handlePayement}>confirmer le payement</p>
-  <p style={{color: 'white'}}>{amount}</p>*/}
-          
-
-
         <div className={popup?"snip1404 blur" : "snip1404"}>
           <Payement title='starter' popup={popup} setPopup={setPopup} payment={payment}   handle={handleTest} amount="300"/>
           <Payement title='Basic' popup={popup} setPopup={setPopup} payment={payment}   handle={handleSilver} amount = "600"/>
@@ -182,6 +174,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
         </div>
         {popup && <Popup phone={phone} name={name} amount={amount} title={title} handlePayement={handlePayement} setPopup={setPopup}/>}
       </div>
+    </div>
   );
 }
 

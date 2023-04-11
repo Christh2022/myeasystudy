@@ -27,20 +27,22 @@ const Login = () => {
 
 
     return (
-        <div className="login">
-            <h1>Se connecter</h1>
-            <form method="post" onSubmit={login}>
-                <input type="email" name="u" placeholder="Email" required="required" onChange={(e)=>setEmail(e.target.value)} />
-                <input type={showPassword? "text" : "password"} name="p" placeholder="Mot de passe" required="required" onChange={(e)=>setPassword(e.target.value)}/>
-                <div style={{display: 'flex', flexDirection: 'row', gap: '1rem', margin: '1rem 0'}}>
-                    <input type="checkbox" name='C' onClick={()=>setShowPassword(!showPassword)}/>
-                    <span className="rol">Voir le mot de passe</span>
-                </div>
-                <button type="submit" className="btn btn-primary btn-block btn-large">connexion</button>
-                <div style={{color: 'white',  margin: '1rem 0'}}>
-                    <span>Vous n'avez pas encore de compte ? <Link to='/signup'> inscrivez-vous</Link> </span>
-                </div>
-            </form>
+        <div className='authentification'>
+            <div className="login">
+                <h1>Se connecter</h1>
+                <form method="post" onSubmit={login}>
+                    <input type="email" name="u" placeholder="Email" required="required" onChange={(e)=>setEmail(e.target.value)} />
+                    <input type={showPassword? "text" : "password"} name="p" placeholder="Mot de passe" required="required" onChange={(e)=>setPassword(e.target.value)}/>
+                    <div style={{display: 'flex', flexDirection: 'row', gap: '1rem', margin: '1rem 0'}}>
+                        <input type="checkbox" name='C' onClick={()=>setShowPassword(!showPassword)}/>
+                        <span className="rol">Voir le mot de passe</span>
+                    </div>
+                    <button type="submit" className="btn btn-primary btn-block btn-large">connexion</button>
+                    <div style={{color: 'white',  margin: '1rem 0'}}>
+                        <span>Vous n'avez pas encore de compte ? <Link to='/signup'> inscrivez-vous</Link> </span>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
