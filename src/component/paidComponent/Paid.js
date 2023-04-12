@@ -40,8 +40,6 @@ function Paid({purchaseToken, setPurchaseToken}) {
       console.log(error);
     }
   }
-  console.log(purchaseToken);
-
   const handlePayement = ()=>{
     if(status === 200){
       window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
@@ -108,7 +106,6 @@ function Paid({purchaseToken, setPurchaseToken}) {
     onAuthStateChanged(auth, (user)=>{
       if(user){
         setName(user.displayName)
-        console.log(user);
         const userId = user.uid
         const usersRef = doc(database, "utilisateur", userId);
         getDoc(usersRef).then((doc)=>{
@@ -116,7 +113,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
                 const userTel = doc.data().tel;
                 setPhone(userTel)
                 const userStatus = doc.data().status;
-                if(userStatus === 1 && purchaseToken !== null){
+                if(userStatus === "1" && purchaseToken){
                   updateDoc(usersRef, {
                     status: purchaseToken
                   })

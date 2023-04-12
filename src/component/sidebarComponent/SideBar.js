@@ -33,27 +33,27 @@ const SideBar = ({showMenu, setShowMenu, name, email}) => {
             </div>
             <div className="slide_bar_menu">
                 <ul>
-                    <li>
+                    <li onClick={()=>navigate('/chat')}>
                         <span><AiFillHome/></span> 
                         <span>Accueil</span>
                     </li>
-                    <li>
+                    <li onClick={()=>navigate('/profile')}>
                         <span><AiOutlineUser/></span>
                         <span>profil</span>
                     </li>
-                    <li>
+                    <li onClick={()=>navigate('/exercice')}>
                         <span><BsFillJournalBookmarkFill/></span>
                         <span>exercice (TD)</span>
                     </li>
-                    <li>
+                    <li onClick={()=>navigate('/exam')}>
                         <span><HiOutlineClipboardDocumentList/></span>
                         <span>Examen</span>
                     </li>
-                    <li>
+                    <li onClick={()=>navigate('/chat_group')}>
                         <AiFillWechat/>
                         <span>Chat</span>
                     </li>
-                    <li>
+                    <li onClick={()=>navigate('/support')}>
                         <span><MdSupportAgent/></span>
                         <span>support</span>
                     </li>

@@ -1,0 +1,93 @@
+.chat_wrapper_profile{
+    height: 100vh;
+    background: #363740;
+    position: fixed;
+    top: 0;
+    right: 250px;
+    left: 0;
+}
+
+.chat_wrapper_profile::-webkit-scrollbar{
+    width: 0;
+}
+
+.chat_wrapper_profile .chat_wrapper_profile_form{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    color: #ffffff;
+    top: 8rem;
+    left: 50%;
+    transform: translate(-50%);
+    gap: 2rem;
+    width: 650px;
+    font-size: 1.2rem;
+}
+
+.chat_wrapper_profile_form>*{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    position: relative;
+}
+
+.chat_wrapper_profile_form>*>*{
+    position: relative;
+    left: 0;
+    width: 100%;
+}
+
+.chat_wrapper_profil_formule{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.chat_wrapper_profile_form>.chat_wrapper_profil_psw>.psw{
+    width: 100%;
+    height: auto;
+}
+
+.info_save{
+    width: 5rem;
+    padding: 0.3rem 0.6rem;
+    background: #898a908e;
+    border-radius: 0.5rem;
+    margin-bottom: 10px;
+}
+
+.chat_wrapper_profil_name>:nth-child(1), 
+.chat_wrapper_profil_email>:nth-child(1),
+.chat_wrapper_profil_psw>:nth-child(1),
+.chat_wrapper_profil_tel>:nth-child(1){
+    margin-bottom: 14px;
+}
+
+@media (max-width: 1024px) {
+    .chat_wrapper_profile{
+        right: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .chat_wrapper_profile .chat_wrapper_profile_form{
+        transform: scale(0.75) translate(-65%);
+    }
+}
+
+@media (max-width: 560px) {
+    .chat_wrapper_profile .chat_wrapper_profile_form{
+        transform: scale(0.55) translate(-90%);
+        top: 4rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .chat_wrapper_profile .chat_wrapper_profile_form{
+        transform: scale(0.5) translate(-100%);
+        top: -1rem;
+    }
+}

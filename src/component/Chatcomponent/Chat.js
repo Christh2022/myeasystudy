@@ -1,4 +1,4 @@
-import {  onAuthStateChanged, signOut  } from 'firebase/auth';
+import {  onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, {  useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -40,9 +40,9 @@ const Chat = ({ userImage}) => {
                                 Payement: true,
                             })
                         }
-                        if(status === 1 ){
-                            signOut(auth)
+                        if(status === "1" ){
                             navigate('/')
+                            console.log('hello');
                         }
                     } else {
                         console.log("l'utilisateur connecté n'existe pas");
@@ -55,6 +55,7 @@ const Chat = ({ userImage}) => {
                 // navigate('/login')
             }
         })
+
     })
     
     const handleChat = async (e) => {

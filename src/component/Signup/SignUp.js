@@ -15,7 +15,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [showError, setShowError] = useState(false)
     const [error, setError] = useState("")
-    const [status, setStatus] = useState(1)
+    const [status, setStatus] = useState("1")
     const [file, setFile] = useState(null)
     const navigate = useNavigate()
 
@@ -54,9 +54,9 @@ const SignUp = () => {
                         status: status,
                         tel : phone,
                         Payement: false,
-                        formule: undefined,
+                        formule: "",
                         prix: "0 FCFA",
-                        question: 0
+                        question: 0,
                     })
                     sendEmailVerification(user)
 
