@@ -69,10 +69,10 @@ const ProfileComponent = ({name, email}) => {
     const handleName = async ()=>{
         if(newName){
             try {
-                updateDoc(doc(database, 'utilisateur', auth.currentUser.uid), {
+                await updateDoc(doc(database, 'utilisateur', auth.currentUser.uid), {
                     nom: newName
                 })
-                updateProfile(auth.currentUser, {
+                await updateProfile(auth.currentUser, {
                     displayName: newName,
                 })
                 window.location.reload();
@@ -87,7 +87,8 @@ const ProfileComponent = ({name, email}) => {
     const handlePassword= async ()=>{
         if (newPassword) {
             try {
-                updatePassword(auth.currentUser, newPassword)
+                await updatePassword (auth.currentUser, newPassword)
+                alert(newPassword);
                 window.location.reload();
             } catch (error) {
                console.log(error); 
