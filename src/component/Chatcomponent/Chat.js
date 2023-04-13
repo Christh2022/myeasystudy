@@ -74,7 +74,7 @@ const Chat = ({ userImage}) => {
                     }
                 })
 
-                const res = await fetch('http://localhost:5080', {
+                const res = await fetch('https://gpt-myeasystudy.onrender.com', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
