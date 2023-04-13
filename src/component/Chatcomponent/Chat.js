@@ -75,15 +75,13 @@ const Chat = ({ userImage}) => {
                     }
                 })
 
-                const res = await fetch('https://gpt-myeasystudy.onrender.com/message', {
-                    method: 'POST',
+                const res = await axios.post('https://gpt-myeasystudy.onrender.com/message', {
+                        message: message
+                    }, {
                     headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        message: message,
-                    }),
-                });
+                      'Content-Type': 'application/json'
+                    }
+                  });
                 const data = await res.json();
                 newList.push(data.completion.content);
                 console.log(data.completion.content);
