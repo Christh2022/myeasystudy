@@ -86,6 +86,7 @@ const Chat = ({ userImage}) => {
                 });
                 const data = await res.json();
                 newList.push(data.completion.content);
+                console.log(data.completion.content);
             } catch (error) {
             newList.push('une erreur c\'est produite');
             }
