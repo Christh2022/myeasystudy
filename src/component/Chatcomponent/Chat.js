@@ -59,6 +59,7 @@ const Chat = ({ userImage}) => {
     })
     
     const handleChat = async (e) => {
+        console.log('hello');
         e.preventDefault();
         if(questionNumber < limit){
             const newList = [...tab]; //Copie du tableau tab
@@ -74,7 +75,7 @@ const Chat = ({ userImage}) => {
                     }
                 })
 
-                const res = await fetch('https://gpt-myeasystudy.onrender.com', {
+                const res = await fetch('https://gpt-myeasystudy.onrender.com/message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
