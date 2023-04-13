@@ -7,6 +7,7 @@ import './chatcomponent.css'
 import {IoIosSend} from 'react-icons/io'
 import {RxCross2} from 'react-icons/rx'
 import logo from '../../assets/EASY.png'
+import axios from 'axios';
 const Chat = ({ userImage}) => {
     
     const [status, setStatus] = useState(0);
@@ -81,7 +82,7 @@ const Chat = ({ userImage}) => {
                     headers: {
                       'Content-Type': 'application/json'
                     }
-                  });
+                });
                 const data = await res.json();
                 newList.push(data.completion.content);
                 console.log(data.completion.content);
