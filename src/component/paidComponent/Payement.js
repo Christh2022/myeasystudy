@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Payement = ({handle, amount, payment, title, setPopup, popup}) => {
+const Payement = ({handle, amount, payment, title, setPopup, popup, checkmark1}) => {
     const [confirm, setconfirm] = useState(false)
 
     return (
@@ -15,12 +15,12 @@ const Payement = ({handle, amount, payment, title, setPopup, popup}) => {
                 </div>
             </header>
             <ul className="plan-features">
-                <li><i className="ion-checkmark"> </i>5GB Linux Web Space</li>
-                <li><i className="ion-checkmark"> </i>5 MySQL Databases</li>
-                <li><i className="ion-checkmark"> </i>Unlimited Email</li>
-                <li><i className="ion-checkmark"> </i>250Gb mo Transfer</li>
-                <li><i className="ion-checkmark"> </i>24/7 Tech Support</li>
-                <li><i className="ion-checkmark"> </i>Daily Backups</li>
+                <li><i className="ion-checkmark"> </i>{checkmark1}</li>
+                <li><i className="ion-checkmark"> </i>N'importe quel sujet</li>
+                <li><i className="ion-checkmark"> </i>Pour les Collégiens</li>
+                <li><i className="ion-checkmark"> </i>Pour les Lycéens</li>
+                <li><i className="ion-checkmark"> </i>Pour les Etudians & Professeur</li>
+                <li><i className="ion-checkmark"> </i>Disponible 24h/24</li>
             </ul>
             <div className="plan-select">
                 {!confirm ?<span onClick={()=>{

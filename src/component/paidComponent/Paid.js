@@ -164,10 +164,10 @@ function Paid({purchaseToken, setPurchaseToken}) {
       {open && 
         <div className='payment-wrapper'>
           <div className={popup?"snip1404 blur" : "snip1404"}>
-            <Payement title='starter' popup={popup} setPopup={setPopup} payment={payment} handle={handleTest} amount="300"/>
-            <Payement title='Basic' popup={popup} setPopup={setPopup} payment={payment} handle={handleSilver} amount = "650"/>
-            <Payement title='VIP' popup={popup}  setPopup={setPopup} payment={payment} handle={handleGolden} amount = "1.300"/>
-            <Payement title='Premium' popup={popup} setPopup={setPopup} payment={payment} handle={handlePremium} amount="2.600"/>
+            <Payement title='starter' popup={popup} setPopup={setPopup} payment={payment} handle={handleTest} amount="300" checkmark1="20 questions"/>
+            <Payement title='Basic' popup={popup} setPopup={setPopup} payment={payment} handle={handleSilver} amount = "650" checkmark1="40 questions"/>
+            <Payement title='VIP' popup={popup}  setPopup={setPopup} payment={payment} handle={handleGolden} amount = "1.300" checkmark1="60 questions"/>
+            <Payement title='Premium' popup={popup} setPopup={setPopup} payment={payment} handle={handlePremium} amount="2.600" checkmark1="80 questions"/>
           </div>
           {popup && <Popup phone={phone} name={name} amount={amount} title={title} handlePayement={handlePayement} setPopup={setPopup}/>}
         </div>
