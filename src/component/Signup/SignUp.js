@@ -62,42 +62,45 @@ const SignUp = () => {
                     });
                     sendEmailVerification(user);
 
-                    const storageImage = async (image)=>{
-                        return  new Promise ((resolve, reject)=>{
-                            const filename = `images/${user.uid}-${image.name}-${UUID()}`
-                            const storageRef = ref(storage, filename);
-                            const uploadTask = uploadBytesResumable(storageRef, image)
-                            uploadTask.on('state_changed', 
-                                (snapshot) => {
-                                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                                    console.log('Upload is ' + progress + '% done');
-                                    switch (snapshot.state) {
-                                        case 'paused':
-                                            console.log('Upload is paused');
-                                            break;
-                                        case 'running':
-                                            console.log('Upload is running');
-                                            break;
-                                            default: ;
+                    if(file){
+                        const storageImage = async (image)=>{
+                            return  new Promise ((resolve, reject)=>{
+                                const filename = `images/${user.uid}-${image.name}-${UUID()}`
+                                const storageRef = ref(storage, filename);
+                                const uploadTask = uploadBytesResumable(storageRef, image)
+                                uploadTask.on('state_changed', 
+                                    (snapshot) => {
+                                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                        console.log('Upload is ' + progress + '% done');
+                                        switch (snapshot.state) {
+                                            case 'paused':
+                                                console.log('Upload is paused');
+                                                break;
+                                            case 'running':
+                                                console.log('Upload is running');
+                                                break;
+                                                default: ;
+                                        }
+                                    }, 
+                                    (error) => {
+                                        // Handle unsuccessful uploads
+                                        reject(error)
+                                    }, 
+                                    () => {
+                                        getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
+                                            resolve(downloadURL);
+                                            await updateProfile(user, {
+                                                displayName : name,
+                                                photoURL : downloadURL, 
+                                            })
+                                        });
                                     }
-                                }, 
-                                (error) => {
-                                    // Handle unsuccessful uploads
-                                    reject(error)
-                                }, 
-                                () => {
-                                    getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
-                                        resolve(downloadURL);
-                                        await updateProfile(user, {
-                                            displayName : name,
-                                            photoURL : downloadURL, 
-                                        })
-                                    });
-                                }
-                            );
-                        })
+                                );
+                            })
+                        };
+                        storageImage(file);
                     };
-                    storageImage(file);
+
                     emailjs.sendForm('service_2cm3wa2', 'template_7bjx2p6', form.current, 'BGucEd0ISzKnnMVsl')
                     .then((result) => {
                         console.log(result.text);

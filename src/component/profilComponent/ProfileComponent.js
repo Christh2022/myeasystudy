@@ -36,13 +36,13 @@ const ProfileComponent = ({name, email}) => {
     useEffect(()=>{
         if(question !== 0 && formule){
             if(formule === 'Starter'){
-                setLimit(150)
+                setLimit(20)
             } else if(formule === 'Basic'){
-                setLimit(300)
+                setLimit(40)
             } else if(formule === 'VIP'){
-                setLimit(750)
+                setLimit(60)
             }  else if(formule === 'Prenium'){
-                setLimit(1000)
+                setLimit(80)
             }
         }
     }, [question, formule])

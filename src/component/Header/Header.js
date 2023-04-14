@@ -14,7 +14,6 @@ const Header = ({showMenu, setShowMenu, userImage}) => {
     }
      const sideBarShow = ()=>{
         setShowMenu(!showMenu)
-        console.log('heloo');
     }
     return (
         <header>

@@ -9,6 +9,7 @@ import Payement from './Payement';
 import Popup from './Popup';
 
 function Paid({purchaseToken, setPurchaseToken}) {
+  const [open, setOpen] = useState(false)
   const [amount, setAmount] = useState(15);
   const [testAmount, setTestAmount] = useState(false);
   const [silverAmount, setSilverAmount] = useState(false);
@@ -53,6 +54,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
           })
         }
       })
+      setOpen(false)
     } else {
       console.log("une erreur c'est produite");
     }
@@ -123,7 +125,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
                   })
                 }
 
-                if (questionNumber > 0 || questionNumber < limit) {
+                if (questionNumber !== 0 && questionNumber < limit) {
                   navigate('/chat')
                 }
             } else {
@@ -143,27 +145,34 @@ function Paid({purchaseToken, setPurchaseToken}) {
 
   useEffect(()=>{
     if(formule === 'Starter'){
-        setLimit(25)
+        setLimit(20)
     } else if(formule === 'Basic'){
-        setLimit(45)
+        setLimit(40)
     } else if(formule === 'VIP'){
-        setLimit(65)
+        setLimit(60)
     }  else if(formule === 'Prenium'){
         setLimit(85)
     }
+
+    setTimeout(()=>{
+      setOpen(true)
+    }, 1000)
   }, [formule])
 
   return (
     <div className='authentification'>
-      <div className='payment-wrapper'>
-        <div className={popup?"snip1404 blur" : "snip1404"}>
-          <Payement title='starter' popup={popup} setPopup={setPopup} payment={payment} handle={handleTest} amount="300"/>
-          <Payement title='Basic' popup={popup} setPopup={setPopup} payment={payment} handle={handleSilver} amount = "600"/>
-          <Payement title='VIP' popup={popup}  setPopup={setPopup} payment={payment} handle={handleGolden} amount = "1.200"/>
-          <Payement title='Premium' popup={popup} setPopup={setPopup} payment={payment} handle={handlePremium} amount="2.400"/>
+      {open && 
+        <div className='payment-wrapper'>
+          <div className={popup?"snip1404 blur" : "snip1404"}>
+            <Payement title='starter' popup={popup} setPopup={setPopup} payment={payment} handle={handleTest} amount="300"/>
+            <Payement title='Basic' popup={popup} setPopup={setPopup} payment={payment} handle={handleSilver} amount = "650"/>
+            <Payement title='VIP' popup={popup}  setPopup={setPopup} payment={payment} handle={handleGolden} amount = "1.300"/>
+            <Payement title='Premium' popup={popup} setPopup={setPopup} payment={payment} handle={handlePremium} amount="2.600"/>
+          </div>
+          {popup && <Popup phone={phone} name={name} amount={amount} title={title} handlePayement={handlePayement} setPopup={setPopup}/>}
         </div>
-        {popup && <Popup phone={phone} name={name} amount={amount} title={title} handlePayement={handlePayement} setPopup={setPopup}/>}
-      </div>
+      }
+
     </div>
   );
 }

@@ -113,16 +113,15 @@ const Chat = ({ userImage}) => {
           element.scrollTop = element.scrollHeight;
         }
     }, [tab]);
-
     useEffect(()=>{
         if(formule === 'Starter'){
-            setLimit(25)
+            setLimit(20)
         } else if(formule === 'Basic'){
-            setLimit(45)
+            setLimit(40)
         } else if(formule === 'VIP'){
-            setLimit(65)
+            setLimit(60)
         }  else if(formule === 'Prenium'){
-            setLimit(85)
+            setLimit(80)
         }
     }, [formule])
 
