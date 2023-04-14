@@ -19,6 +19,9 @@ function Paid({purchaseToken, setPurchaseToken}) {
   const [popup, setPopup] = useState(false);
   const [name, setName] = useState("");
   const [title, seTitle] = useState("");
+  const [formule, setFormule] = useState("")
+  const [limit, setLimit] = useState(0);
+  const [questionNumber, setQuestionNumber] = useState(0)
   const navigate = useNavigate();
 
   const payment = async()=>{
@@ -110,13 +113,18 @@ function Paid({purchaseToken, setPurchaseToken}) {
         const usersRef = doc(database, "utilisateur", userId);
         getDoc(usersRef).then((doc)=>{
             if (doc.exists()) {
-                const userTel = doc.data().tel;
-                setPhone(userTel)
+                setQuestionNumber(doc.data().question);
+                setPhone(doc.data().tel);
+                setFormule(doc.data().formule)
                 const userStatus = doc.data().status;
                 if(userStatus === "1" && purchaseToken){
                   updateDoc(usersRef, {
                     status: purchaseToken
                   })
+                }
+
+                if (questionNumber > 0 || questionNumber < limit) {
+                  navigate('/chat')
                 }
             } else {
                 console.log("l'utilisateur connecté n'existe pas ");
@@ -132,6 +140,18 @@ function Paid({purchaseToken, setPurchaseToken}) {
     })
 
   })
+
+  useEffect(()=>{
+    if(formule === 'Starter'){
+        setLimit(25)
+    } else if(formule === 'Basic'){
+        setLimit(45)
+    } else if(formule === 'VIP'){
+        setLimit(65)
+    }  else if(formule === 'Prenium'){
+        setLimit(85)
+    }
+  }, [formule])
 
   return (
     <div className='authentification'>
