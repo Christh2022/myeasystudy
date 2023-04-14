@@ -7,9 +7,9 @@ import './chatcomponent.css'
 import {IoIosSend} from 'react-icons/io'
 import {RxCross2} from 'react-icons/rx'
 import logo from '../../assets/EASY.png'
-import axios from 'axios';
+
+
 const Chat = ({ userImage}) => {
-    
     const [status, setStatus] = useState(0);
     const [payment, setPayment] = useState(false);
     const chatLog = useRef();
@@ -76,12 +76,14 @@ const Chat = ({ userImage}) => {
                     }
                 })
 
-                const res = await axios.post('https://gpt-myeasystudy.onrender.com/message', {
-                        message: message
-                    }, {
+                const res = await fetch('https://gpt-myeasystudy.onrender.com', {
+                    method: 'POST',
                     headers: {
-                      'Content-Type': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                    }),
                 });
                 const data = await res.json();
                 newList.push(data.completion.content);
