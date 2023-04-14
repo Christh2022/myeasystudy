@@ -1,9 +1,10 @@
 import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc} from 'firebase/firestore';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 import { auth, database, storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import emailjs from '@emailjs/browser';
 import './signup.css'
 
 const SignUp = () => {
@@ -11,13 +12,14 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [phone, setPhone] = useState("")
-    const [showPassword, setShowPassword] = useState(false)
-    const [showError, setShowError] = useState(false)
-    const [error, setError] = useState("")
-    const [status, setStatus] = useState("1")
-    const [file, setFile] = useState(null)
-    const navigate = useNavigate()
+    const [phone, setPhone] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showError, setShowError] = useState(false);
+    const [error, setError] = useState("");
+    const [status, setStatus] = useState("1");
+    const [file, setFile] = useState(null);
+    const navigate = useNavigate();
+    const form = useRef();
 
     const UUID = ()=>{
         let d = new Date().getTime();//Timestamp
@@ -41,8 +43,8 @@ const SignUp = () => {
         try {
             if(name && password && email && phone){
                 if(password === confirmPassword){
-                    const credential = await createUserWithEmailAndPassword(auth, email, password)
-                    const user = credential.user
+                    const credential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = credential.user;
                     
                     updateProfile(user, {
                         displayName: name,
@@ -57,8 +59,8 @@ const SignUp = () => {
                         formule: "",
                         prix: "0 FCFA",
                         question: 0,
-                    })
-                    sendEmailVerification(user)
+                    });
+                    sendEmailVerification(user);
 
                     const storageImage = async (image)=>{
                         return  new Promise ((resolve, reject)=>{
@@ -94,12 +96,18 @@ const SignUp = () => {
                                 }
                             );
                         })
-                    }
-                    storageImage(file)
-                    navigate('/')
+                    };
+                    storageImage(file);
+                    emailjs.sendForm('service_2cm3wa2', 'template_7bjx2p6', form.current, 'BGucEd0ISzKnnMVsl')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
+                    navigate('/');
                 } else {
-                    setShowError(!showError)
-                    setError("les mots de passes ne sont pas identique")
+                    setShowError(!showError);
+                    setError("les mots de passes ne sont pas identique");
                 }
             } else {
                 setShowError(!showError)
@@ -123,10 +131,10 @@ const SignUp = () => {
         <div className='authentification'>
             <div className="signup">
                 <h1>S'inscrire</h1>
-                <form method="post" onSubmit={signup}>
-                    <input type="text" placeholder="Name" onClick={handleInput} onChange={(e)=>setName(e.target.value)} />
-                    <input type="email"  placeholder="Email" onClick={handleInput}  onChange={(e)=>setEmail(e.target.value)} />
-                    <input type="text"  placeholder="Téléphone" onClick={handleInput}  onChange={(e)=>setPhone(e.target.value)} />
+                <form ref={form} onSubmit={signup}>
+                    <input type="text" placeholder="Name" name="user_name" onClick={handleInput} onChange={(e)=>setName(e.target.value)} />
+                    <input type="email"  placeholder="Email" name="user_email" onClick={handleInput}  onChange={(e)=>setEmail(e.target.value)} />
+                    <input type="text"  placeholder="Téléphone" name="tel" onClick={handleInput}  onChange={(e)=>setPhone(e.target.value)} />
                     <input type="file" onChange={(e)=>setFile(e.target.files[0])} accept='.jpeg, .png, .jpg'/>
                     <input type={showPassword? "text" : "password"} placeholder="Mot de passe" onClick={handleInput}  onChange={(e)=>setPassword(e.target.value)}/>
                     <input type={showPassword? "text" : "password"} placeholder="Confirmation mot de passe" onClick={handleInput}  onChange={(e)=>setConfirmPassword(e.target.value)}/>
