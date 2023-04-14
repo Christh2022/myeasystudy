@@ -8,7 +8,6 @@ import './paid.css';
 import Payement from './Payement';
 import Popup from './Popup';
 
-
 function Paid({purchaseToken, setPurchaseToken}) {
   const [amount, setAmount] = useState(15);
   const [testAmount, setTestAmount] = useState(false);
@@ -19,13 +18,13 @@ function Paid({purchaseToken, setPurchaseToken}) {
   const [phone, setPhone] = useState("");
   const [popup, setPopup] = useState(false);
   const [name, setName] = useState("");
-  const [title, seTitle] = useState("")
+  const [title, seTitle] = useState("");
   const navigate = useNavigate();
 
   const payment = async()=>{
     try {
       if(amount !== 0){
-        const response = await axios.post("http://localhost:5000/create-payment", {
+        const response = await axios.post("https://paideasystudy.onrender.com/create-payment", {
           amount: amount,
           name: name,
           title: "Achat d'un abonnement",
@@ -40,10 +39,10 @@ function Paid({purchaseToken, setPurchaseToken}) {
       console.log(error);
     }
   }
-  console.log(purchaseToken);
+
   const handlePayement = ()=>{
     if(status === 200){
-      window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
+      window.location.href = `https://paideasystudy.onrender.com/pay/${purchaseToken}`;
       onAuthStateChanged(auth, (user)=>{
         if(user){
           updateDoc(doc(database, "utilisateur", user.uid), {
