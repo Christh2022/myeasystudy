@@ -25,7 +25,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
   const payment = async()=>{
     try {
       if(amount !== 0){
-        const response = await axios.post("https://paideasystudy.onrender.com/create-payment", {
+        const response = await axios.post("http://localhost:5000/create-payment", {
           amount: amount,
           name: name,
           title: "Achat d'un abonnement",
@@ -40,9 +40,10 @@ function Paid({purchaseToken, setPurchaseToken}) {
       console.log(error);
     }
   }
+  console.log(purchaseToken);
   const handlePayement = ()=>{
     if(status === 200){
-      window.location.href = `https://paideasystudy.onrender.com/pay/${purchaseToken}`;
+      window.location.href = `http://localhost:5000/pay/${purchaseToken}`;
       onAuthStateChanged(auth, (user)=>{
         if(user){
           updateDoc(doc(database, "utilisateur", user.uid), {

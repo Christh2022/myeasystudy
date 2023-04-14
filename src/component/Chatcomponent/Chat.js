@@ -10,6 +10,7 @@ import logo from '../../assets/EASY.png'
 
 
 const Chat = ({ userImage}) => {
+
     const [status, setStatus] = useState(0);
     const [payment, setPayment] = useState(false);
     const chatLog = useRef();
@@ -86,10 +87,8 @@ const Chat = ({ userImage}) => {
                     }),
                 });
                 const data = await res.json();
-                if(data.completion.content){
-                    newList.push(data.completion.content);
-                    console.log(data.completion.content);
-                }
+                newList.push(data.completion.content);
+                console.log(data.completion.content);
             } catch (error) {
             newList.push('une erreur c\'est produite');
             }
