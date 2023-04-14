@@ -67,16 +67,6 @@ const Chat = ({ userImage}) => {
             const newList = [...tab]; //Copie du tableau tab
             newList.push(message);
             try {
-                onAuthStateChanged(auth, (user)=>{
-                    if(user){
-                        const userId = user.uid;
-                        const usersRef = doc(database, "utilisateur", userId);
-                        updateDoc(usersRef, {
-                            question: questionNumber + 1
-                        })
-                    }
-                })
-
                 const res = await fetch('https://gpt-myeasystudy.onrender.com', {
                     method: 'POST',
                     headers: {
@@ -87,8 +77,20 @@ const Chat = ({ userImage}) => {
                     }),
                 });
                 const data = await res.json();
-                newList.push(data.completion.content);
-                console.log(data.completion.content);
+                if(data.completion.content){
+                    newList.push(data.completion.content);
+                    onAuthStateChanged(auth, (user)=>{
+                        if(user){
+                            const userId = user.uid;
+                            const usersRef = doc(database, "utilisateur", userId);
+                            updateDoc(usersRef, {
+                                question: questionNumber + 1
+                            })
+                        }
+                    })
+                } else {
+                    newList.push('une erreur c\'est produite');
+                }
             } catch (error) {
             newList.push('une erreur c\'est produite');
             }
@@ -114,13 +116,13 @@ const Chat = ({ userImage}) => {
 
     useEffect(()=>{
         if(formule === 'Starter'){
-            setLimit(150)
+            setLimit(25)
         } else if(formule === 'Basic'){
-            setLimit(300)
+            setLimit(45)
         } else if(formule === 'VIP'){
-            setLimit(750)
+            setLimit(65)
         }  else if(formule === 'Prenium'){
-            setLimit(1000)
+            setLimit(85)
         }
     }, [formule])
 
