@@ -14,12 +14,11 @@ const Login = () => {
         e.preventDefault()
 
         try {
-            const credential = await signInWithEmailAndPassword(auth, email, password)
-            alert("connexion reussie")
-            console.log(credential.user);
-            navigate('/chat')
+            await signInWithEmailAndPassword(auth, email, password);
+            alert("connexion reussie");
+            navigate('/chat');
         } catch (error) {
-            alert("connexion echoué")
+            alert("connexion echoué");
             console.log(error);
         }
     }

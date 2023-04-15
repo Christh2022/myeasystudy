@@ -59,6 +59,7 @@ const SignUp = () => {
                         formule: "",
                         prix: "0 FCFA",
                         question: 0,
+                        admin: false
                     });
                     sendEmailVerification(user);
 
