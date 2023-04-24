@@ -276,4 +276,10 @@
     .chat_container .container .sidebar .navbar .go_back_dashbord {
         display: block;
     }
+
+    .chat_container .container .chat .messages {
+        background-color: #ddddf7;
+        padding: 10px 15px;
+        height: calc(100% - 120px);
+      }
 }
