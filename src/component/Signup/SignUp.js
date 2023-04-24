@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
-import { doc, setDoc} from 'firebase/firestore';
+import { doc, setDoc, updateDoc} from 'firebase/firestore';
 import React, { useRef, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 import { auth, database, storage } from '../../firebase';
@@ -59,7 +59,9 @@ const SignUp = () => {
                         formule: "",
                         prix: "0 FCFA",
                         question: 0,
-                        admin: false
+                        admin: false,
+                        photoURL: "",
+                        uid: user.uid
                     });
                     sendEmailVerification(user);
 
@@ -94,6 +96,12 @@ const SignUp = () => {
                                                 displayName : name,
                                                 photoURL : downloadURL, 
                                             })
+
+                                            await updateDoc(doc(database, "utilisateur", user.uid), {
+                                                photoURL: downloadURL
+                                            })
+
+                                            await setDoc(doc(database, "conversation", user.uid), {})
                                         });
                                     }
                                 );

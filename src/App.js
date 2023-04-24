@@ -8,6 +8,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import logo from './assets/user-g8bc25d40d_1280.png'
 import Profile from './Pages/Profile';
+import Exo from './Pages/Exo';
 
 function App() {
   const [purchaseToken, setPurchaseToken] = useState(null);
@@ -32,6 +33,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/exercice' element={<Exo  name={name} email={email}/>}/>
         <Route path='/profile' element={<Profile userImage={userImage} name={name} email={email}/>}/>
         <Route path='/chat' element={<Chatpage userImage={userImage} name={name} email={email}  purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
         <Route path='/login' element={<Login purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
