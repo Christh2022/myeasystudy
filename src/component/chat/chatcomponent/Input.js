@@ -16,16 +16,12 @@ const Input = () => {
     console.log(data.chatId);
 
     const handleSend = async()=>{
-        
         if(img) {
             const storageRef = ref(storage, uuid())
 
             const uploadTask = uploadBytesResumable(storageRef, img);
 
             uploadTask.on(
-                (error)=>{
-
-                },
                 ()=>{
                     getDownloadURL(uploadTask.snapshot.ref).then(async(link)=>{
                         await updateDoc(doc(database, "chats", data.chatId), {

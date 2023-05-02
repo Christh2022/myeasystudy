@@ -1,0 +1,73 @@
+.input_chat{
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    left: 30%
+}
+
+.input_chat input{
+    width: 600px;
+    height: 3rem;
+    background: rgb(67, 70, 90);
+    border: none;
+    outline: none;
+}
+
+.input_chat input::placeholder{
+    color: white;
+    font-size: 0.9rem;
+}
+
+.input_chat .send{
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    padding-left: 1.2rem;
+}
+
+.input_chat .send button{
+    height: 100%;
+    border: none;
+    background: none;
+}
+
+.send>*{
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: white;
+}
+
+@media (max-width: 1225px) {
+    .input_chat{
+        transform: scale(0.73);
+    }
+}
+
+@media (max-width: 1025px) {
+    .input_chat{
+        right: 45%;
+        transform: scale(0.76) translate(80%);
+        
+    }
+}
+
+@media (max-width: 800px) {
+    .input_chat{
+        right: 0;
+        transform: scale(1) translate(0);
+        position: fixed;
+        bottom: 0px;
+        background: #363740;
+        padding: 6px 0 2px 20px;
+    }
+
+    .input_chat .send{
+        gap: 0rem;
+        font-size: 0.6rem;
+        padding-left: 0.4rem;
+        padding-right: -15px;
+    }
+}

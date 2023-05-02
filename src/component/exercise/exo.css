@@ -1,0 +1,17 @@
+.exo_component{
+    height: 100vh;
+    background: #363740;
+    position: fixed;
+    top: 0;
+    right: 250px;
+    left: 0;
+    padding-top: 100px;
+    overflow: hidden;
+}
+
+@media (max-width: 1025px) {
+    .exo_component{
+        right: 0;
+        padding-top: 80px;
+    }
+}

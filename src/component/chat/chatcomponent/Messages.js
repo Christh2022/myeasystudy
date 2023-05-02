@@ -4,7 +4,7 @@ import { ChatContext } from '../ChatContext';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { database } from '../../../firebase';
 
-const Messages = () => {
+const Messages = ({image}) => {
     const [messages, setMessages] = useState([]);
     const {data} = useContext(ChatContext);
 
@@ -24,7 +24,7 @@ const Messages = () => {
     return (
         <div className='messages'>
             {messages.map((m)=>
-                <Message message={m} key={m.id}/>
+                <Message image={image} message={m} key={m.id}/>
             )}
 
         </div>

@@ -1,0 +1,57 @@
+.user_exo{
+    height: 100vh;
+    background: #606173;
+    position: fixed;
+    overflow-y: scroll;
+    top: 0px;
+    width: 250px;
+    left: 0;
+    -webkit-box-shadow: 0 2px 6px 0 rgba(86, 86, 88, 0.65), 0 0px 6px 0 rgba(86, 86, 88, 0.65);
+    box-shadow: 0 2px 6px 0 rgba(86, 86, 88, 0.65), 0 0px 6px 0 rgba(86, 86, 88, 0.65);
+}
+
+.userChat{
+    padding: 85px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.userChat .user__chat{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user__chat img{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.user__chat .userChatInfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-direction: column;
+    gap: 0;
+}
+
+.user__chat .userChatInfo>:nth-child(2){
+    color: rgb(194, 194, 191);
+    margin: 0;
+    padding: 0;
+}
+.user_exo.show{
+    display: block;
+    width: 100%;
+    right: 0;
+}
+@media (max-width: 800px) {
+    .user_exo{
+        display: none;
+    }
+}

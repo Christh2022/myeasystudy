@@ -20,7 +20,7 @@ const Message = ({message}) => {
             </div>
             <div className='messageContent'>
                 <p>{message.text}</p>
-                {message.img && <img src={message.img} alt="/" />}
+                {message.img && <a href={message.img}><img src={message.img} alt="/" /></a>}
             </div>
         </div>
     );

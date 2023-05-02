@@ -7,14 +7,33 @@ import {AiOutlineAppstore} from 'react-icons/ai'
 import {HiOutlinePlus} from 'react-icons/hi2'
 import './header.css';
 
-const Header = ({showMenu, setShowMenu, userImage}) => {
+const Header = ({showChatUser, setShowChatUser, showUser,setShowUser, showMenu, userFind, setUserFind, handleSearch, setShowMenu, userImage, searchUser, setSearchUser}) => {
     const [showResearch, setShowResearch] = useState(false);
+
     const research = ()=>{
         setShowResearch(!showResearch)
+        if(userFind){
+            setUserFind(false);
+            setSearchUser("")
+        }
     }
-     const sideBarShow = ()=>{
+
+    const sideBarShow = ()=>{
         setShowMenu(!showMenu)
     }
+
+    const handleChange = (value)=>{
+        setSearchUser(value);
+        handleSearch()
+        value.length > 0 ? setUserFind(true) : setUserFind(false)
+    } 
+    const handleUser = ()=>{
+        if(window.innerWidth <= 800){
+            setShowUser(!showUser)
+            setShowChatUser(!showChatUser)
+        }
+    }
+
     return (
         <header>
             <div className='topbar'>
@@ -26,7 +45,7 @@ const Header = ({showMenu, setShowMenu, userImage}) => {
                     </div>
                     <div className= {showResearch? 'search-bar flex-grow-1 hide' : 'search-bar flex-grow-1'}>
                         <div className={showResearch? 'container-search' : 'container-search'}>
-                            <input placeholder='...Recherche' className='form-control search-control'/>
+                            <input placeholder='...Recherche' value={searchUser} className='form-control search-control' onChange={(e)=>handleChange(e.target.value)}/>
                             <span  className={showResearch? 'search-show' : 'search-show hide'} style={{cursor: 'pointer'}}>
                                 <CiSearch/>
                             </span>
@@ -43,7 +62,7 @@ const Header = ({showMenu, setShowMenu, userImage}) => {
                                         <CiSearch/>
                                     </span>
                                 </li>
-                                <li className='nav-item dropdown dropdown-large'>
+                                <li className='nav-item dropdown dropdown-large' onClick={handleUser}>
                                     <span className='nav-link' style={{cursor: 'pointer'}}>
                                         <AiOutlineAppstore/>
                                     </span>
