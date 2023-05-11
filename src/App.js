@@ -21,8 +21,7 @@ function App() {
     onAuthStateChanged(auth, (user)=>{
       if (user) {
         setName(user.displayName)
-        setEmail(user.email);
-        setUser(user)
+        setEmail(user.email)
         if (user.photoURL) {
           setUserImage(user.photoURL)
         } else {
@@ -35,13 +34,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/exercice' element={user && <Exercicsepage userImage={userImage} name={name} email={email}/>}/>
-        <Route path='/profile' element={user && <Profile userImage={userImage} name={name} email={email}/>}/>
-        <Route path='/chat' element={user && <Chatpage userImage={userImage} name={name} email={email}  purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
+        <Route path='/exercice' element={user && <Exercicsepage user={user} userImage={userImage} name={name} email={email}/>}/>
+        <Route path='/profile' element={user && <Profile user={user} userImage={userImage} name={name} email={email}/>}/>
+        <Route path='/chat' element={user && <Chatpage user={user} userImage={userImage} name={name} email={email}  purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
         <Route path='/login' element={<Login purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
         <Route path='/signup' element={<SignUp />}/>
-        <Route path='/*' element={user && <Chatpage purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
-        <Route path='/' element={<Paid purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken} />}/>
+        <Route path='/*' element={<Chatpage purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken}/>}/>
+        <Route path='/' element={user && <Paid purchaseToken={purchaseToken} setPurchaseToken={setPurchaseToken} />}/>
       </Routes>
     </BrowserRouter>
   );

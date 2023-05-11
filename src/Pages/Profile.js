@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../component/Header/Header';
 import SideBar from '../component/sidebarComponent/SideBar';
 import ProfileComponent from '../component/profilComponent/ProfileComponent';
 
-const Profile = ({name, email, userImage}) => {
+const Profile = ({user, name, email, userImage}) => {
     const [showMenu, setShowMenu] = useState(false);
+    useEffect(()=>{
+        !user && navigate('/login')  
+    })
     return (
         <div className='chat_profiles' style={{width: '100%', height: '100vh'}}>
             <div style={showMenu? {filter: ' blur(2px)'} : null}>

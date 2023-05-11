@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SideBar from '../component/sidebarComponent/SideBar';
 import Header from '../component/Header/Header';
 import Exercise from '../component/exercise/Exercise';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { database } from '../firebase';
 import Search from '../component/exercise/exerciseComponent/SearchUsers';
+import { useNavigate } from 'react-router-dom';
 
 
-const Exercicsepage = ({name, email, userImage}) => {
+const Exercicsepage = ({user, name, email, userImage}) => {
     const [showMenu, setShowMenu] = useState(false);
     const [searchUser, setSearchUser] = useState("H");
     const [userFind, setUserFind] = useState(false);
@@ -16,6 +17,7 @@ const Exercicsepage = ({name, email, userImage}) => {
     const [otherUser, setOtheruser] = useState("");
     const [showChatUser, setShowChatUser] = useState(true);
     const [image, setImage] = useState(null);
+    const navigate = useNavigate()
 
     const handleSearch = async()=>{
         const q = query(collection(database, "utilisateur"), orderBy("nom", 'desc'));
@@ -29,6 +31,10 @@ const Exercicsepage = ({name, email, userImage}) => {
             })
         } catch (error) {console.log(error)}
     }
+
+    useEffect(()=>{
+        !user && navigate('/login')  
+    })
 
     return (
         <>
