@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Header from '../component/Header/Header';
 import SideBar from '../component/sidebarComponent/SideBar';
 import ProfileComponent from '../component/profilComponent/ProfileComponent';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = ({user, name, email, userImage}) => {
     const [showMenu, setShowMenu] = useState(false);
+    const navigate= useNavigate()
     useEffect(()=>{
         !user && navigate('/login')  
     })
