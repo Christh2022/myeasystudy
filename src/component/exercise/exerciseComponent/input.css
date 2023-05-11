@@ -71,3 +71,14 @@
         padding-right: -15px;
     }
 }
+
+@media (max-width: 800px) {
+    .input_chat{
+        padding: 1px 0 2px 2px;
+    }
+
+    .input_chat .send{
+        padding-left: 0.05rem;
+        padding-right: -1px;
+    }
+}
