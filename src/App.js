@@ -21,7 +21,8 @@ function App() {
     onAuthStateChanged(auth, (user)=>{
       if (user) {
         setName(user.displayName)
-        setEmail(user.email)
+        setEmail(user.email);
+        setUser(user)
         if (user.photoURL) {
           setUserImage(user.photoURL)
         } else {
