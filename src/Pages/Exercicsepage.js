@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Exercicsepage = ({user, name, email, userImage}) => {
     const [showMenu, setShowMenu] = useState(false);
-    const [searchUser, setSearchUser] = useState("H");
+    const [searchUser, setSearchUser] = useState("");
     const [userFind, setUserFind] = useState(false);
     const [userList, setUserList] = useState([]);
     const [showUser, setShowUser] = useState(true);
