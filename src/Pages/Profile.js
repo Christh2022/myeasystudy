@@ -8,7 +8,9 @@ const Profile = ({user, name, email, userImage}) => {
     const [showMenu, setShowMenu] = useState(false);
     const navigate= useNavigate()
     useEffect(()=>{
-        !user && navigate('/login')  
+        setTimeout(()=>{
+            !user && navigate('/login');  
+        }, 500);
     })
     return (
         <div className='chat_profiles' style={{width: '100%', height: '100vh'}}>

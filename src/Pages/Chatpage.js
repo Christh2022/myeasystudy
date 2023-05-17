@@ -8,7 +8,9 @@ const Chatpage = ({user, name, email, userImage}) => {
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState(false);
     useEffect(()=>{
-        !user && navigate('/login')  
+        setTimeout(()=>{
+            !user && navigate('/login');  
+        }, 500)
     })
     return (
         <div className='chat_bot' style={{width: '100%', height: '100vh'}}>

@@ -33,7 +33,9 @@ const Exercicsepage = ({user, name, email, userImage}) => {
     }
 
     useEffect(()=>{
-        !user && navigate('/login')  
+        setTimeout(()=>{
+            !user && navigate('/login');  
+        }, 500)
     })
 
     return (
