@@ -14,23 +14,24 @@ const Input = ({chatid, otherUser}) => {
 
     const handleSend = async(chatId)=>{
         if(image){
-            const storageRef = ref(storage, uuid());
+            const filename = `images/${user.uid}-${image.name}-${uuid()}`;
+            const storageRef = ref(storage, filename);
             const uploadTask = uploadBytesResumable(storageRef, image);
-            uploadTask.on(
+
+            uploadTask.on('state_changed', 
                 ()=>{
                     getDownloadURL(uploadTask.snapshot.ref).then(async(link)=>{
                         await updateDoc(doc(database, "chats", chatId), {
                             messages: arrayUnion({
                                 id: uuid(),
-                                text,
+                                // text,
                                 senderId: user.uid,
                                 date: Timestamp.now(),
                                 img: link
                             })
                         })
                     })
-                }
-            )
+            })
         } else {
             await updateDoc(doc(database, "chats", chatId), {
                 messages: arrayUnion({

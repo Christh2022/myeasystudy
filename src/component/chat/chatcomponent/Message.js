@@ -9,6 +9,10 @@ const Message = ({message}) => {
     console.log(message);
     const ref = useRef();
 
+    const checkMessage = (mess)=>{
+        if(!mess) console.log('sac');
+    }
+
     useEffect(()=>{
         ref.user?.scrollIntoView({behavior: "smooth"})
     }, [message])
@@ -19,7 +23,7 @@ const Message = ({message}) => {
                 <span>just now</span>
             </div>
             <div className='messageContent'>
-                <p>{message.text}</p>
+                {checkMessage(message.text) && <p>{message.text}</p>}
                 {message.img && <a href={message.img}><img src={message.img} alt="/" /></a>}
             </div>
         </div>
