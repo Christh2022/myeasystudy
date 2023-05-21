@@ -3,14 +3,14 @@ import Chat from '../component/Chatcomponent/Chat';
 import SideBar from '../component/sidebarComponent/SideBar';
 import Header from '../component/Header/Header';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
 
-const Chatpage = ({user, name, email, userImage}) => {
-    const navigate = useNavigate()
+const Chatpage = ({ name, email, userImage}) => {
+    const navigate = useNavigate();
     const [showMenu, setShowMenu] = useState(false);
+    const user = auth.currentUser;
     useEffect(()=>{
-        setTimeout(()=>{
-            !user && navigate('/login');  
-        }, 500)
+        if(user) console.log('hello');
     })
     return (
         <div className='chat_bot' style={{width: '100%', height: '100vh'}}>
