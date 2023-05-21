@@ -5,12 +5,16 @@ import { ChatContext } from '../ChatContext';
 const Message = ({message}) => {
     const user = auth.currentUser;
     const {data} = useContext(ChatContext);
+    const [hide, setHide] = useState(false)
 
     console.log(message);
     const ref = useRef();
     const handleselect = ()=>{
         console.log('hello');
     }
+    useEffect(()=>{
+        window.innerWidth < 800 ? setHide(true) : setHide(false)
+    }, [])
 
     useEffect(()=>{
         ref.user?.scrollIntoView({behavior: "smooth"})
@@ -19,7 +23,8 @@ const Message = ({message}) => {
         <div className={`message ${message.senderId === user.uid && 'owner' }`}>
             <div className='messageInfo'>
                 <img src={message.senderId === user.uid? user.photoURL : data.user.photoURL} alt="/" onClick={handleselect} />
-                <span>just now</span>
+                {hide && <span>just now</span>}
+                <div>hello</div>
             </div>
             <div className='messageContent'>
                 {message.text !== '' ? <p>{message.text}</p> : console.log('hello')}
