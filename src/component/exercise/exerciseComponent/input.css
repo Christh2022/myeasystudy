@@ -45,7 +45,7 @@
 @media (max-width: 1225px) {
     .input_chat{
         transform: scale(0.73);
-        left: 24%
+        left: 17%
     }
 }
 
@@ -53,6 +53,7 @@
 @media (max-width: 1025px) {
     .input_chat{
         right: 10px;
+        left: 26%
     }
 }
 
@@ -75,7 +76,7 @@
     }
 } */
 
-@media (max-width: 460px) {
+@media (max-width: 799px) {
     .input_chat{
         padding: 10px 5px;
         width: 100%;

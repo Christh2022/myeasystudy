@@ -19,7 +19,7 @@ const Message = ({message, image}) => {
 
     useEffect(()=>{
         ref.user?.scrollIntoView({behavior: "smooth"});
-        window.innerWidth < 800 && setShowDate(false)
+        window.innerWidth < 800 && setShowDate(true)
     }, [message])
 
     
@@ -30,7 +30,7 @@ const Message = ({message, image}) => {
                 <img src={message.senderId === user.uid? user.photoURL : image} alt="/" />
                 {showDate && <span>{handleDate(message.date.seconds, message.date.nanoseconds)}</span>}
             </div>}
-            {message.img && <div className='messageInfo'>
+            {!message.text && message.img && <div className='messageInfo'>
                 <img src={message.senderId === user.uid? user.photoURL : image} alt="/" />
                 {showDate && <span>{handleDate(message.date.seconds, message.date.nanoseconds)}</span>}
             </div>}

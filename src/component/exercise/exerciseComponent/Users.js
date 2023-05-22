@@ -26,8 +26,10 @@ const Users = ({showUser, setShowUser, setShowChatUser, showChatUser, setMessage
         onSnapshot(doc(database, "chats", chatId), (doc)=>{
             setMessages(doc.data().messages);
         });
-        setShowChatUser(!showChatUser);
-        setShowUser(!showUser)
+        if (window.innerWidth < 800) {
+            setShowChatUser(!showChatUser);
+            setShowUser(!showUser)
+        }
     };
 
 

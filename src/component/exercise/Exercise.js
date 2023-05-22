@@ -11,6 +11,8 @@ const Exercise = ({image, setImage, setShowUser, setShowChatUser, showChatUser, 
     useEffect(()=>{
         if(window.innerWidth > 800){
             setShowChatUser(false)
+        } else {
+            setShowChatUser(true)
         }
     })
 

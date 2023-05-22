@@ -28,11 +28,15 @@ const Header = ({showChatUser, setShowChatUser, showUser,setShowUser, showMenu, 
         value.length > 0 ? setUserFind(true) : setUserFind(false)
     } 
     const handleUser = ()=>{
-        if(window.innerWidth <= 800){
+        if(window.innerWidth < 800){
             setShowUser(!showUser)
             setShowChatUser(!showChatUser)
+        } else {
+            setShowUser(true)
         }
     }
+
+
 
     return (
         <header>
