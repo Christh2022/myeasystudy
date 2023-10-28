@@ -67,7 +67,7 @@ const Chat = ({ userImage}) => {
             const newList = [...tab]; //Copie du tableau tab
             newList.push(message);
             try {
-                const res = await fetch('https://gpt-myeasystudy.onrender.com', {
+                const res = await fetch('https://puce-brave-drill.cyclic.app', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
