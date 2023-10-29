@@ -37,7 +37,7 @@ function Paid({purchaseToken, setPurchaseToken}) {
         const { data } = response.data;
         setPurchaseToken(data);
         setStatus(response.status)
-        
+        console.log(purchaseToken);
       }
     } catch (error) {
       console.log(error);
