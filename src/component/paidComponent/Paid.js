@@ -45,7 +45,8 @@ function Paid({purchaseToken, setPurchaseToken}) {
   }
 
   const handlePayement = ()=>{
-    if(status === 200){
+    console.log(purchaseToken);
+    if(status === 200 && purchaseToken ){
       window.location.href = `https://puce-brave-drill.cyclic.app/pay/${purchaseToken}`;
       onAuthStateChanged(auth, (user)=>{
         if(user){
